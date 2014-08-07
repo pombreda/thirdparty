@@ -35,8 +35,8 @@ script:
   - source bin/activate
   # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
-  # reinstall wheel?
-  - pip install --use-wheel --find-links=dist/ --download=dist/ wheel
+  # install proper
+  - pip install --use-wheel --find-links=dist/  -r requirements.txt
   # wheel the downloads
   - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
   # regenerate index
