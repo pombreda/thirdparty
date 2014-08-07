@@ -45,7 +45,7 @@ script:
 after_success:
   # commit new downlaods and built wheels
   - cd ~/thirdparty
-  - git add .
+  - git add . --verbose
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push --all https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
