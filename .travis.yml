@@ -50,6 +50,7 @@ after_success:
   - cd ~/thirdparty
   - find dist/
   - git add -A --verbose *
+  - git add -A --verbose dist/*
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push --all https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
