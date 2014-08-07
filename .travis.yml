@@ -42,4 +42,4 @@ after_success:
   - git status
   - git commit -m "New dist packages built via Travis build: ${TRAVIS_BUILD_NUMBER} from commit:${TRAVIS_COMMIT}"
   # - git push --quiet https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
-  - git push origin packages
+  - git push origin ref/heads/packages
