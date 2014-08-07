@@ -45,17 +45,8 @@ script:
   # regenerate index
   # - TBD
   # commit new downlaods and built wheels
-  - echo "a" > testfile
   - git status
-  - git add testfile
-  - git add -f --verbose dist/*.gz
-  - git add -f --verbose dist/*.tgz
-  - git add -f --verbose dist/*.xz
-  - git add -f --verbose dist/*.txz
-  - git add -f --verbose dist/*.tbz
-  - git add -f --verbose dist/*.bz2
-  - git add -f -A --verbose dist/*.whl
-  - git add -f --verbose dist/*zip
+  - git add --verbose dist/*
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
