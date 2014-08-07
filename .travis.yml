@@ -42,13 +42,9 @@ script:
   # wheel the downloads
   - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
   - find ~/thirdparty/dist
-
   # regenerate index
   # - TBD
-
-after_success:
   # commit new downlaods and built wheels
-  - cd ~/thirdparty
   - git status
   - git add -f --verbose dist/*.gz
   - git add -f --verbose dist/*.tgz
