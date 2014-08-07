@@ -33,18 +33,22 @@ script:
   - cd ~/thirdparty
   - python2.7 dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
+  - cd ~/thirdparty
   # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
   # install proper
   - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r requirements.txt
   # wheel the downloads
   - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
+  - find ~/thirdparty/dist
+
   # regenerate index
   # - TBD
 
 after_success:
   # commit new downlaods and built wheels
   - cd ~/thirdparty
+  - find dist/
   - git add -A --verbose *
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
