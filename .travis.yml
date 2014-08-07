@@ -23,9 +23,11 @@ install:
   # Clone and branch
   - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${HOME}/thirdparty
   - cd ${HOME}/thirdparty
-  - git checkout -b packages   
+  - git checkout -b packages
   # Merge latest requirements from master
+  - find ${HOME}
   - git merge master
+  - find ${HOME}
 
 script:
   # deactivate from Travis venv
