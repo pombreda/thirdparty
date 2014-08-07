@@ -32,8 +32,8 @@ script:
   - deactivate
   # Install our pip, setuptools in a virtualenv
   - cd ${HOME}/thirdparty
-  - python2.7 ${HOME}/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=${HOME}/thirdparty/dist/ .
-  - source bin/activate
+  - python2.7 ${HOME}/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=${HOME}/thirdparty/dist/ ${HOME}/thirdparty/
+  - source ${HOME}/thirdparty/bin/activate
   # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=${HOME}/thirdparty/dist/ --download=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt
   # wheel the downloads
