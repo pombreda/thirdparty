@@ -25,7 +25,7 @@ install:
   - git checkout -b packages origin/packages
   # Merge latest requirements from master
   - find ~/thirdparty
-  - git merge -m "Merging latest master requirements in packages" origin/master ${TRAVIS_COMMIT}
+  - git merge -m "Merging latest master requirements in packages" ${TRAVIS_COMMIT}
   - find ~/thirdparty
 
 script:
