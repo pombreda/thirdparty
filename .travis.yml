@@ -55,7 +55,7 @@ after_success:
   - git add -f --verbose dist/*.txz
   - git add -f --verbose dist/*.tbz
   - git add -f --verbose dist/*.bz2
-  - git add -f --verbose dist/*.whl
+  - git add -f -A --verbose dist/*.whl
   - git add -f --verbose dist/*zip
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
