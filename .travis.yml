@@ -36,7 +36,7 @@ script:
   # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
   # wheel the downloads
-  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
+  - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
   # regenerate index
   # - TBD
 
