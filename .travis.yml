@@ -1,3 +1,5 @@
+language: python
+
 python:
   - '2.7'
 
@@ -11,8 +13,7 @@ env:
     - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
 
 before_install:
-    - pwd
-    - cp requirements.txt ${HOME}/requirements.txt
+    - export CHECKOUT_HOME=`pwd`
    
 install:
   # Setup extra packages as needed
@@ -20,28 +21,30 @@ install:
   # - sudo apt-get install -y libxml2-dev
   # - sudo apt-get install -y libxslt-dev
   # Clone and branch
-  - git clone --branch packages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${HOME}/thirdparty
-  # copy the latest master requirements and copy these to the branch
-  - cp ${HOME}/requirements.txt ${HOME}/thirdparty/requirements.txt
+  - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${HOME}/thirdparty
+  - cd ${HOME}/thirdparty
+  - git checkout -b packages   
+  # Merge latest requirements from master
+  - git merge master
 
 script:
   # Install pip, setuptools in a virtualenv
   - cd ${HOME}/thirdparty
   - python2.7 dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
-  # download and install requirements
+  # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
-  # wheel'em
+  # wheel the downloads
   - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir dist --find-links=dist/ -r requirements.txt 
   # regenerate index
   # - TBD
 
 after_success:
-  # commit new wheels
+  # commit new downlaods and built wheels
   - cd ${HOME}/thirdparty
-  - git add -f requirements.txt
+  - git add -f *
   - git add -f dist/*
   - git status
-  - git commit -m "New dist packages built via Travis build: ${TRAVIS_BUILD_NUMBER} for master commit:${TRAVIS_COMMIT}"
-  # - git push --quiet https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
-  - git push origin ref/heads/packages
+  - git commit -m "New packages built via Travis build: ${TRAVIS_BUILD_NUMBER} for master commit:${TRAVIS_COMMIT}"
+  - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ref/heads/packages
+ 

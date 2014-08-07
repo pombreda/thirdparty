@@ -1,5 +1,5 @@
 # Base and configuration tools
-virtualend==1.11.6
+virtualenv==1.11.6
 setuptools==5.4.2
 pip == 1.5.6
 wheel == 0.24.0
