@@ -1,0 +1,45 @@
+language: python
+
+python:
+  - '2.7'
+
+branches:
+  only:
+  - master
+
+env:
+  global:
+    # OAuth token for Travis to commit back to Github
+    - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
+
+install:
+  # Setup extra packages as needed
+  # - sudo apt-get update -qq
+  # - sudo apt-get install -y libxml2-dev
+  # - sudo apt-get install -y libxslt-dev
+  # Clone and branch
+  - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${HOME}/thirdparty
+  # keep the master requirements and copy these to the branch
+  - cp -f ${HOME}/thirdparty/requirements.txt ${HOME}/requirements.txt
+  - git checkout -b dist origin/dist
+  - cp ${HOME}/requirements.txt ${HOME}/thirdparty/requirements.txt
+
+script:
+  # Install pip, setuptools in a virtualenv
+  - python2.7 ${HOME}/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=${HOME}/thirdparty/dist/ ${HOME}/thirdparty
+  - source ${HOME}/thirdparty/bin/activate
+  # download and install requirements
+  - pip install --use-wheel --find-links=${HOME}/thirdparty/dist/ --download=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt
+  # wheel'em
+  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir ${HOME}/thirdparty/dist --find-links=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt 
+  # regenerate index
+  # - TBD
+
+after_success:
+  # commit new wheels
+  - cd ${HOME}/thirdparty
+  - git add -f * dist/*
+  - git status
+  - git commit -m "New dist packages built via Travis build: ${TRAVIS_BUILD_NUMBER} from commit:${TRAVIS_COMMIT}"
+  # - git push --quiet https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git dist
+  - git push origin dist

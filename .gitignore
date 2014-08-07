@@ -1,0 +1,20 @@
+*.py[cod]
+
+# env
+/bin
+/Lib
+/lib
+/Scripts
+/include
+/Include
+
+# temp dir
+/build
+
+# Installer logs
+pip-log.txt
+
+/.project
+/.pydevproject
+/.settings
+/.idea
