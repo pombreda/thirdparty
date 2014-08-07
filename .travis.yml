@@ -48,6 +48,6 @@ after_success:
   - git add -f *
   - git add -f dist/*
   - git status
-  - git commit -m "New packages built via Travis build: ${TRAVIS_BUILD_NUMBER} for master commit:${TRAVIS_COMMIT}"
+  - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ref/heads/packages
  
