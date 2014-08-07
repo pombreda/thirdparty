@@ -24,9 +24,7 @@ install:
   - cd ~/thirdparty
   - git checkout -b packages origin/packages
   # Merge latest requirements from master
-  - find ~/thirdparty
   - git merge -m "Merging latest master requirements in packages" ${TRAVIS_COMMIT}
-  - find ~/thirdparty
 
 script:
   # deactivate from Travis venv
