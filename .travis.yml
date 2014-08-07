@@ -28,14 +28,16 @@ install:
   - git merge master
 
 script:
-  # Install pip, setuptools in a virtualenv
+  # deactivate from Travis venv
+  - deactivate
+  # Install our pip, setuptools in a virtualenv
   - cd ${HOME}/thirdparty
-  - python2.7 dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+  - python2.7 ${HOME}/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=${HOME}/thirdparty/dist/ .
   - source bin/activate
   # download if needed or reuse known requirements
-  - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
+  - pip install --use-wheel --find-links=${HOME}/thirdparty/dist/ --download=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt
   # wheel the downloads
-  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir dist --find-links=dist/ -r requirements.txt 
+  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir ${HOME}/thirdparty/dist --find-links=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt 
   # regenerate index
   # - TBD
 
