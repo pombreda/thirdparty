@@ -25,7 +25,8 @@ install:
   - git checkout -b packages origin/packages
   # Merge latest requirements from master
   - git merge -m "Merging latest master requirements in packages" ${TRAVIS_COMMIT}
-
+  - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
+ 
 script:
   # deactivate from Travis venv
   - deactivate
