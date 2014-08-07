@@ -45,7 +45,9 @@ script:
   # regenerate index
   # - TBD
   # commit new downlaods and built wheels
+  - echo "a" > testfile
   - git status
+  - git add testfile
   - git add -f --verbose dist/*.gz
   - git add -f --verbose dist/*.tgz
   - git add -f --verbose dist/*.xz
