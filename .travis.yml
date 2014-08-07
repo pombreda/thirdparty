@@ -31,12 +31,12 @@ script:
   - deactivate
   # Install our pip, setuptools in a virtualenv
   - cd ~/thirdparty
-  - python2.7 ~/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=~/thirdparty/dist/ ~/thirdparty/
-  - source ~/thirdparty/bin/activate
+  - python2.7 dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+  - source bin/activate
   # download if needed or reuse known requirements
-  - pip install --use-wheel --find-links=~/thirdparty/dist/ --download=~/thirdparty/dist/ -r ~/thirdparty/requirements.txt
+  - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
   # wheel the downloads
-  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir ~/thirdparty/dist --find-links=~/thirdparty/dist/ -r ~/thirdparty/requirements.txt 
+  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
   # regenerate index
   # - TBD
 
