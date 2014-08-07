@@ -23,7 +23,7 @@ install:
   - git checkout -b packages origin/packages
   # Merge latest requirements from master
   - find ~/thirdparty
-  - git merge origin/master
+  - git merge master
   - find ~/thirdparty
 
 script:
