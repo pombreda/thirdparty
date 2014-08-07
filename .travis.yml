@@ -49,6 +49,8 @@ after_success:
   # commit new downlaods and built wheels
   - cd ~/thirdparty
   - find dist/
+  - git config --list
+  - git config --global --list
   - git add -A --verbose *
   - git add -A --verbose dist/*
   - git status
