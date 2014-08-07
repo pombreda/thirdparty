@@ -46,7 +46,7 @@ script:
   # - TBD
   # commit new downlaods and built wheels
   - git status
-  - git add --verbose dist/*
+  - git add -A --verbose dist
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
