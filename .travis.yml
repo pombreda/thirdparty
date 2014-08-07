@@ -51,8 +51,12 @@ after_success:
   - find dist/
   - git config --list
   - git config --global --list
-  - git add -A --verbose *
-  - git add -A --verbose dist/*
+  - git add -f --verbose dist/*gz
+  - git add -f --verbose dist/*xz
+  - git add -f --verbose dist/*bz
+  - git add -f --verbose dist/*z2
+  - git add -f --verbose dist/*whl
+  - git add -f --verbose dist/*zip
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push --all https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git
