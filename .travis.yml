@@ -12,40 +12,37 @@ env:
     # OAuth token for Travis to commit back to Github
     - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
 
-before_install:
-    - export CHECKOUT_HOME=`pwd`
-   
 install:
   # Setup extra packages as needed
   # - sudo apt-get update -qq
   # - sudo apt-get install -y libxml2-dev
   # - sudo apt-get install -y libxslt-dev
   # Clone and branch
-  - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${HOME}/thirdparty
-  - cd ${HOME}/thirdparty
-  - git checkout -b packages
+  - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ~/thirdparty
+  - cd ~/thirdparty
+  - git checkout -b packages origin/packages
   # Merge latest requirements from master
-  - find ${HOME}
-  - git merge master
-  - find ${HOME}
+  - find ~/thirdparty
+  - git merge origin/master
+  - find ~/thirdparty
 
 script:
   # deactivate from Travis venv
   - deactivate
   # Install our pip, setuptools in a virtualenv
-  - cd ${HOME}/thirdparty
-  - python2.7 ${HOME}/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=${HOME}/thirdparty/dist/ ${HOME}/thirdparty/
-  - source ${HOME}/thirdparty/bin/activate
+  - cd ~/thirdparty
+  - python2.7 ~/thirdparty/dist/virtualenv.py --never-download --extra-search-dir=~/thirdparty/dist/ ~/thirdparty/
+  - source ~/thirdparty/bin/activate
   # download if needed or reuse known requirements
-  - pip install --use-wheel --find-links=${HOME}/thirdparty/dist/ --download=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt
+  - pip install --use-wheel --find-links=~/thirdparty/dist/ --download=~/thirdparty/dist/ -r ~/thirdparty/requirements.txt
   # wheel the downloads
-  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir ${HOME}/thirdparty/dist --find-links=${HOME}/thirdparty/dist/ -r ${HOME}/thirdparty/requirements.txt 
+  - pip wheel --no-index --no-allow-external --use-wheel --wheel-dir ~/thirdparty/dist --find-links=~/thirdparty/dist/ -r ~/thirdparty/requirements.txt 
   # regenerate index
   # - TBD
 
 after_success:
   # commit new downlaods and built wheels
-  - cd ${HOME}/thirdparty
+  - cd ~/thirdparty
   - git add -f *
   - git add -f dist/*
   - git status
