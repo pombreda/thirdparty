@@ -21,7 +21,7 @@ install:
   - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${HOME}/thirdparty
   # keep the master requirements and copy these to the branch
   - cp -f ${HOME}/thirdparty/requirements.txt ${HOME}/requirements.txt
-  - git checkout -b dist origin/dist
+  - git checkout -b packages origin/packages
   - cp ${HOME}/requirements.txt ${HOME}/thirdparty/requirements.txt
 
 script:
@@ -41,5 +41,5 @@ after_success:
   - git add -f * dist/*
   - git status
   - git commit -m "New dist packages built via Travis build: ${TRAVIS_BUILD_NUMBER} from commit:${TRAVIS_COMMIT}"
-  # - git push --quiet https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git dist
-  - git push origin dist
+  # - git push --quiet https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
+  - git push origin packages
