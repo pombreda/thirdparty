@@ -20,7 +20,7 @@ env:
     - PYTHON_ARCHIVE=Python-$PYTHON_MINOR
     - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$PYTHON_MINOR/$PYTHON_ARCHIVE.tgz
     - export PYTON_EXE=python$PYTHON_VER
-
+    - set | grep PY
 install:
   - echo "installing Python"
   - mkdir -p $PYTHON_PATH
@@ -29,6 +29,7 @@ install:
   - ./configure --prefix $PYTHON_PATH >/dev/null 2>&1 
   - make >/dev/null 2>&1 
   - make install >/dev/null 2>&1
+  - $PYTHON_PATH/bin/$PYTHON_EXE --version
   - echo "Done installing Python"
 
   # Setup extra packages as needed
@@ -49,9 +50,8 @@ install:
 script:
   # Install our pip, setuptools in a virtualenv
   - cd ~/thirdparty
-  - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+  - "$PYTHON_PATH/bin/$PYTHON_EXE" dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
-  - cd ~/thirdparty
   # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
   # install proper
