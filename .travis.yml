@@ -1,86 +1,79 @@
 language: cpp
 
 
-os:
-  - linux
-  # - osx
+#os:
+    #- linux
+    # - osx
 
 
-compiler:
-  - gcc
+#compiler:
+    #- gcc
 
 
 branches:
-  only:
-  - master
+    only:
+        - master
 
 
 env:
-  global:
-    # OAuth token for Travis to commit back to Github
-    - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
-    - PYTHON_VER=2.7
-    - PYTHON_MINOR=2.7.8
-    - PYTHON_PATH=$HOME/python$PYTHON_VER
-    - PYTHON_ARCHIVE=Python-$PYTHON_MINOR
-    - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$PYTHON_MINOR/$PYTHON_ARCHIVE.tgz
-    - PYTHON_EXE=python$PYTHON_VER
+    global:
+        # OAuth token for Travis to commit back to Github
+        - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
+        - REPO_BASE=$(pwd)
+        - PYTHON_VER=2.7
+        - PYTHON_MINOR=2.7.8
+        - PYTHON_PATH=$HOME/python$PYTHON_VER
+        - PYTHON_ARCHIVE=Python-$PYTHON_MINOR
+        - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$PYTHON_MINOR/$PYTHON_ARCHIVE.tgz
+        - PYTHON_EXE=python$PYTHON_VER
 
 
 before_install:
-  # fetching a full clone from Travis shallow clone 
-  - export TRAVIS_CLONE=$(pwd)
-  - git config --global user.email "${GIT_EMAIL}"
-  - git config --global user.name "${GIT_NAME}"
-  - cd $TRAVIS_CLONE
-  - git fetch --unshallow --verbose
-
-  # Merge latest requirements from master in packages
-  - git checkout -b packages origin/packages
-  - git merge -m "Merging master SHA:${TRAVIS_COMMIT} in packages branch" ${TRAVIS_COMMIT}
-  - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
+    # fetching a full clone from Travis shallow clone 
+    - echo "REPO_BASE is $REPO_BASE"
+    - git config --global user.email "${GIT_EMAIL}"
+    - git config --global user.name "${GIT_NAME}"
+    - cd $TRAVIS_CLONE
+    - git fetch --unshallow --verbose
+    # Merge latest requirements from master in packages
+    - git checkout -b packages origin/packages
+    - git merge -m "Merging master SHA:${TRAVIS_COMMIT} in packages branch" ${TRAVIS_COMMIT}
+    - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
 
 
 install:
-  # Setup extra packages as needed
-  # use $TRAVIS_OS_NAME is linux or osx
-  # - sudo apt-get update -qq
-  # - sudo apt-get install -y libxml2-dev
-  # - sudo apt-get install -y libxslt-dev
-
-  - echo "Installing Python $PYTHON_MINOR"
-  - mkdir -p $PYTHON_PATH
-  - cd $PYTHON_PATH && curl --location "$PYTHON_DOWNLOAD" | tar -zx
-  - cd $PYTHON_PATH/$PYTHON_ARCHIVE
-  - ./configure --prefix $PYTHON_PATH >/dev/null 2>&1 
-  - make >/dev/null 2>&1 
-  - make install >/dev/null 2>&1
-  - $PYTHON_PATH/bin/$PYTHON_EXE --version
-  - echo "Done installing Python $PYTHON_MINOR"
-
+    # Setup extra packages as needed
+    # use $TRAVIS_OS_NAME is linux or osx
+    # - sudo apt-get update -qq
+    # - sudo apt-get install -y libxml2-dev
+    # - sudo apt-get install -y libxslt-dev
+    - echo "Installing Python $PYTHON_MINOR"
+    - mkdir -p $PYTHON_PATH
+    - cd $PYTHON_PATH && curl --location "$PYTHON_DOWNLOAD" | tar -zx
+    - cd $PYTHON_PATH/$PYTHON_ARCHIVE
+    - ./configure --prefix $PYTHON_PATH >/dev/null 2>&1
+    - make >/dev/null 2>&1 
+    - make install >/dev/null 2>&1
+    - $PYTHON_PATH/bin/$PYTHON_EXE --version
+    - echo "Done installing Python $PYTHON_MINOR"
 
 
 script:
-  # Install our pip, setuptools in a virtualenv
-  - cd $TRAVIS_CLONE
-  - "$PYTHON_PATH/bin/$PYTHON_EXE" dist/virtualenv.py --never-download --extra-search-dir=dist/ .
-  - source bin/activate
-
-  # download if needed or reuse known requirements
-  - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt -r requirements-no-wheel.txt
-
-  # install proper
-  - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r requirements.txt -r requirements-no-wheel.txt
-
-  # wheel the downloads only for these that support wheels
-  - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
-  - find $TRAVIS_CLONE/dist
-
-  # TODO: regenerate index
-
-  # commit new downloads and built wheels
-  - git status
-  - git add -A --verbose dist
-  - git status
-  - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}"
-  - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
+    #- cd $REPO_BASE
+    # Install our pip, setuptools in a virtualenv
+    - "$PYTHON_PATH/bin/$PYTHON_EXE" dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+    - source bin/activate
+    # download if needed or reuse known requirements
+    - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt -r requirements-no-wheel.txt
+    # install proper
+    - pip install --no-index --no-allow-external --use-wheel --find-links=dist/    -r requirements.txt -r requirements-no-wheel.txt
+    # wheel the downloads only for these that support wheels
+    - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt
+    - find $TRAVIS_CLONE/dist
+    # TODO: regenerate index
+    # commit new downloads and built wheels
+    - git status
+    - git add -A --verbose dist
+    - git status
+    - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}"
+    - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
