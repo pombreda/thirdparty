@@ -14,7 +14,7 @@ env:
     - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
     - cd ~/
     - HERE=$(pwd)
-    - PYTON_VER=2.7
+    - PYTHON_VER=2.7
     - PYTHON_MINOR=2.7.8
     - export PYTHON_PATH=$HERE/python$PYTHON_VER
     - PYTHON_ARCHIVE=Python-$PYTHON_MINOR
