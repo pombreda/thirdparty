@@ -84,6 +84,6 @@ script:
   - git add -A --verbose dist
   - git status
   - git pull --all
-  - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}"
+  - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}" --allow-empty
   - git pull --all
   - git push https://${GH_TOKEN}@github.com/pombreda/thirdparty.git packages
