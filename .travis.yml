@@ -34,8 +34,11 @@ before_install:
 
     # Merge latest from master in packages then push
   - cd $REPO_DIR
+  - git pull --all
   - git checkout -b packages origin/packages
+  - git pull --all
   - git merge -m "Merging master SHA:${TRAVIS_COMMIT} in packages branch" ${TRAVIS_COMMIT}
+  - git pull --all
   - git push https://${GH_TOKEN}@github.com/pombreda/thirdparty.git packages
 
 
@@ -76,8 +79,11 @@ script:
     # TODO: regenerate index
 
     # commit then push new downloads and built wheels
+  - git pull --all
   - git status
   - git add -A --verbose dist
   - git status
+  - git pull --all
   - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}"
+  - git pull --all
   - git push https://${GH_TOKEN}@github.com/pombreda/thirdparty.git packages
