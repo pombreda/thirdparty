@@ -1,11 +1,8 @@
-os:
-  - linux
-  - osx
+language: cpp
 
-language: python
-
-python:
-  - '2.7'
+#os:
+  #- linux
+  # - osx
 
 branches:
   only:
@@ -15,8 +12,25 @@ env:
   global:
     # OAuth token for Travis to commit back to Github
     - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
+    - cd ~/
+    - HERE=$(pwd)
+    - PYTON_VER=2.7
+    - PYTHON_MINOR=2.7.8
+    - export PYTHON_PATH=$(HERE)/python$(PYTHON_VER)
+    - PYTHON_ARCHIVE= Python-$(PYTHON_MINOR)
+    - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$(PYTHON_MINOR)/$(PYTHON_ARCHIVE).tgz
+    - export PYTON_EXE=python$(PYTHON_VER)
 
 install:
+  - echo "installing Python"
+  - mkdir -p $(PYTHON_PATH)
+  - cd $(PYTHON_PATH) && curl --progress-bar --location $(PYTHON_DOWNLOAD) | tar -zx
+  - cd $(PYTHON_PATH)/$(PYTHON_ARCHIVE)
+  - ./configure --prefix $(PYTHON_PATH) >/dev/null 2>&1 
+  - make >/dev/null 2>&1 
+  - make install >/dev/null 2>&1
+  - echo "Done installing Python"
+
   # Setup extra packages as needed
   # use $TRAVIS_OS_NAME is linux or osx
   # - sudo apt-get update -qq
@@ -31,13 +45,11 @@ install:
   # Merge latest requirements from master
   - git merge -m "Merging latest master requirements in packages" ${TRAVIS_COMMIT}
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
- 
+
 script:
-  # deactivate from Travis venv
-  - deactivate
   # Install our pip, setuptools in a virtualenv
   - cd ~/thirdparty
-  - python dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+  - $(PYTHON_PATH)/bin/$(PYTHON_EXE) dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
   - cd ~/thirdparty
   # download if needed or reuse known requirements
