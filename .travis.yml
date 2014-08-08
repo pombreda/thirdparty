@@ -1,6 +1,11 @@
+os:
+  - linux
+  - osx
+
 language: python
 
 python:
+  - '2.6'
   - '2.7'
 
 branches:
@@ -14,6 +19,7 @@ env:
 
 install:
   # Setup extra packages as needed
+  # use $TRAVIS_OS_NAME is linux or osx
   # - sudo apt-get update -qq
   # - sudo apt-get install -y libxml2-dev
   # - sudo apt-get install -y libxslt-dev
@@ -32,7 +38,7 @@ script:
   - deactivate
   # Install our pip, setuptools in a virtualenv
   - cd ~/thirdparty
-  - python2.7 dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+  - python dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
   - cd ~/thirdparty
   # download if needed or reuse known requirements
@@ -50,4 +56,3 @@ script:
   - git status
   - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
- 
