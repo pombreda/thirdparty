@@ -66,14 +66,15 @@ script:
   - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
 
-    # download if needed or reuse known requirements
-  - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt -r requirements-no-wheel.txt
-
-    # install proper
-  - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r requirements.txt -r requirements-no-wheel.txt
+    # Instal build tools
+  - pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt
+  - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r base.txt
+  
+    # download if needed or reuse 
+  - pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt -r requirements.txt -r requirements-no-wheel.txt
 
     # wheel the downloads only for these that support wheels
-  - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt
+  - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r base.txt -r requirements.txt
 
   - find $REPO_DIR/dist
     # TODO: regenerate index
