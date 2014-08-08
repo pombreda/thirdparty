@@ -55,6 +55,7 @@ virtualenv==1.11.6
 Whoosh==2.5.7
 z3c.recipe.usercrontab==1.1
 zc.buildout==2.2.1
+Pympler==0.3.1
 
 # ensure wheel is always the lats requirement
 wheel==0.24.0
