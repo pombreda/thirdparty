@@ -21,6 +21,7 @@ env:
     - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$PYTHON_MINOR/$PYTHON_ARCHIVE.tgz
     - export PYTON_EXE=python$PYTHON_VER
     - set | grep PY
+
 install:
   - echo "installing Python"
   - mkdir -p $PYTHON_PATH
@@ -53,10 +54,10 @@ script:
   - "$PYTHON_PATH/bin/$PYTHON_EXE" dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
   # download if needed or reuse known requirements
-  - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt
+  - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt -r requirements-no-wheel.txt
   # install proper
-  - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r requirements.txt
-  # wheel the downloads
+  - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r requirements.txt -r requirements-no-wheel.txt
+  # wheel the downloads only for these that support wheels
   - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt 
   - find ~/thirdparty/dist
   # regenerate index
@@ -65,5 +66,5 @@ script:
   - git status
   - git add -A --verbose dist
   - git status
-  - git commit -m "New packages built via Travis for master commit:${TRAVIS_COMMIT}"
+  - git commit -m "New packages built via Travis for commit SHA:${TRAVIS_COMMIT}"
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages

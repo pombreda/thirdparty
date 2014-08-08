@@ -1,0 +1,2 @@
+# note: does not work as a wheel.. yet
+publicsuffix==1.0.5
