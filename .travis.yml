@@ -30,7 +30,7 @@ before_install:
     # undo travis commit specific checkout and fetch a full clone from Travis shallow clone aka --unshallow
   - cd $REPO_BASE
   - git checkout  master
-  - git fetch --all --depth=1000000 --verbose
+  - git pull --depth=1000000 --verbose origin
 
     # Merge latest from master in packages then push
   - git checkout -b packages origin/packages
