@@ -13,7 +13,7 @@ branches:
 
 env:
   global:
-    # OAuth token for Travis to commit back to Github
+      # OAuth token for Travis to commit back to Github
     - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
     - REPO_BASE=$(pwd)
     - PYTHON_VER=2.7
@@ -24,24 +24,25 @@ env:
     - PYTHON_EXE=python$PYTHON_VER
 
 before_install:
-  # fetching a full clone from Travis shallow clone 
-  - echo "REPO_BASE is $REPO_BASE"
   - git config --global user.email "${GIT_EMAIL}"
   - git config --global user.name "${GIT_NAME}"
-  - cd $REPO_BASE
-  - git fetch --all --unshallow --verbose
 
-  # Merge latest requirements from master in packages
+    # undo travis commit specific checkout and fetch a full clone from Travis shallow clone aka --unshallow
+  - cd $REPO_BASE
+  - git checkout  master
+  - git fetch --all --depth=1000000 --verbose
+
+    # Merge latest from master in packages then push
   - git checkout -b packages origin/packages
   - git merge -m "Merging master SHA:${TRAVIS_COMMIT} in packages branch" ${TRAVIS_COMMIT}
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
 
 install:
-  # Setup extra packages as needed
-  # use $TRAVIS_OS_NAME is linux or osx
-  # - sudo apt-get update -qq
-  # - sudo apt-get install -y libxml2-dev
-  # - sudo apt-get install -y libxslt-dev
+    # Setup extra packages as needed
+    # use $TRAVIS_OS_NAME is linux or osx
+    # - sudo apt-get update -qq
+    # - sudo apt-get install -y libxml2-dev
+    # - sudo apt-get install -y libxslt-dev
 
   - echo Installing Python
   - mkdir -p $PYTHON_PATH
@@ -56,23 +57,23 @@ install:
 script:
   - cd $REPO_BASE
 
-  # Install our pip, setuptools in a virtualenv
+    # Install our pip, setuptools in a virtualenv
   - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
 
-  # download if needed or reuse known requirements
+    # download if needed or reuse known requirements
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r requirements.txt -r requirements-no-wheel.txt
 
-  # install proper
+    # install proper
   - pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r requirements.txt -r requirements-no-wheel.txt
 
-  # wheel the downloads only for these that support wheels
+    # wheel the downloads only for these that support wheels
   - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt
   - find $TRAVIS_CLONE/dist
 
-  # TODO: regenerate index
+    # TODO: regenerate index
 
-  # commit new downloads and built wheels
+    # commit then push new downloads and built wheels
   - git status
   - git add -A --verbose dist
   - git status
