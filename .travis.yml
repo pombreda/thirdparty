@@ -15,24 +15,26 @@ env:
   global:
       # OAuth token for Travis to commit back to Github
     - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
-    - REPO_BASE=$(pwd)
     - PYTHON_VER=2.7
     - PYTHON_MINOR=2.7.8
     - PYTHON_PATH=$HOME/python$PYTHON_VER
     - PYTHON_ARCHIVE=Python-$PYTHON_MINOR
     - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$PYTHON_MINOR/$PYTHON_ARCHIVE.tgz
     - PYTHON_EXE=python$PYTHON_VER
+    - REPO_BASE=$HOME/repo
+    - REPO_DIR=$REPO_BASE/${TRAVIS_REPO_SLUG}
 
 before_install:
   - git config --global user.email "${GIT_EMAIL}"
   - git config --global user.name "${GIT_NAME}"
 
-    # undo travis commit specific checkout and fetch a full clone from Travis shallow clone aka --unshallow
+    # Get a full clone
+  - mkdir $REPO_BASE
   - cd $REPO_BASE
-  - git checkout  master
-  - git pull --depth=1000000 --verbose origin
+  - git clone https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git ${TRAVIS_REPO_SLUG}
 
     # Merge latest from master in packages then push
+  - cd $REPO_DIR
   - git checkout -b packages origin/packages
   - git merge -m "Merging master SHA:${TRAVIS_COMMIT} in packages branch" ${TRAVIS_COMMIT}
   - git push https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git packages
@@ -40,9 +42,9 @@ before_install:
 install:
     # Setup extra packages as needed
     # use $TRAVIS_OS_NAME is linux or osx
-    # - sudo apt-get update -qq
-    # - sudo apt-get install -y libxml2-dev
-    # - sudo apt-get install -y libxslt-dev
+    - sudo apt-get update -qq
+    - sudo apt-get upgrade -qq -y
+    - sudo apt-get install -y build-essential python-dev libxml2-dev libxslt1-dev
 
   - echo Installing Python
   - mkdir -p $PYTHON_PATH
@@ -55,9 +57,8 @@ install:
   - echo Done installing Python
 
 script:
-  - cd $REPO_BASE
-
     # Install our pip, setuptools in a virtualenv
+  - cd $REPO_DIR
   - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
 
@@ -69,8 +70,8 @@ script:
 
     # wheel the downloads only for these that support wheels
   - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r requirements.txt
-  - find $TRAVIS_CLONE/dist
 
+  - find $REPO_DIR/dist
     # TODO: regenerate index
 
     # commit then push new downloads and built wheels
