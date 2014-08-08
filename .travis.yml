@@ -2,10 +2,11 @@ language: cpp
 
 os: 
   - linux 
-  # - osx
+  - osx
 
 compiler: 
   - gcc
+  - clang
 
 branches:
   only:
