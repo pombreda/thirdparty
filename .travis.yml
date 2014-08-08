@@ -29,7 +29,7 @@ before_install:
   - git config --global user.email "${GIT_EMAIL}"
   - git config --global user.name "${GIT_NAME}"
   - cd $REPO_BASE
-  - git fetch --unshallow --verbose
+  - git fetch --all --unshallow --verbose
 
   # Merge latest requirements from master in packages
   - git checkout -b packages origin/packages
