@@ -4,9 +4,6 @@ os:
   - linux 
   - osx
 
-compiler: 
-  - gcc
-  - clang
 
 branches:
   only:
