@@ -28,7 +28,7 @@ before_install:
   - echo "REPO_BASE is $REPO_BASE"
   - git config --global user.email "${GIT_EMAIL}"
   - git config --global user.name "${GIT_NAME}"
-  - cd $TRAVIS_CLONE
+  - cd $REPO_BASE
   - git fetch --unshallow --verbose
 
   # Merge latest requirements from master in packages
