@@ -53,3 +53,7 @@ z3c.recipe.usercrontab==1.1
 zc.buildout==2.2.1
 Pympler==0.3.1
 
+fabric==1.9.1
+paramiko==1.14.0
+pycrypto==2.6
+ecdsa==0.11
