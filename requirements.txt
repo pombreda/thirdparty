@@ -58,4 +58,4 @@ pycrypto
 click
 
 #Bitten is not in Pypi
-http://bitten.edgewall.org/changeset/1027/branches/0.6.x?old_path=%2F&format=zip
+#http://bitten.edgewall.org/changeset/1027/branches/0.6.x?old_path=%2F&format=zip
