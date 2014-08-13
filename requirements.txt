@@ -15,7 +15,6 @@ django-haystack==2.1.1-dev
 django-reversion==1.8.1
 django-tastypie==0.11.1
 elasticsearch==1.0.0
-fabric==1.4.3
 
 ftputil==3.1.1
 httmock==1.2.1
@@ -29,7 +28,6 @@ natsort==3.4.0
 oauthlib==0.6.0
 pudb==2014.1
 py2-ipaddress==2.0
-pycrypto==2.6
 pygments==1.6
 python-dateutil==2.2
 python-memcached==1.53
@@ -42,7 +40,6 @@ requests-oauthlib==0.4.0
 selenium==2.39.0
 six==1.6.1
 South==1.0
-ssh==1.7.14
 supervisor==3.0
 unicodecsv==0.9.4
 url==0.1.2
@@ -53,6 +50,8 @@ z3c.recipe.usercrontab==1.1
 zc.buildout==2.2.1
 Pympler==0.3.1
 
-fabric==1.9.1
 paramiko==1.14.0
 ecdsa==0.11
+
+fabric==1.9.1
+pycrypto==2.6.1
