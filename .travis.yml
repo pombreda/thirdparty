@@ -79,6 +79,8 @@ script:
   - find $REPO_DIR/dist
     # TODO: regenerate index
 
+  - ./build.sh
+
     # commit then push new downloads and built wheels
   - git pull --all
   - git status
