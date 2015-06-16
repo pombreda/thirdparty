@@ -39,9 +39,10 @@ elif [[ "$os_name" =~ "Darwin" ]]; then
     brew tap homebrew/homebrew-dupes
     brew install zlib xz bzip2 wget libiconv
     build_lib
-    mkdir -p .build/bin
-    cp .libs/libarchive.13.dylib .build/bin/libarchive.dylib
-    strip .build/bin/*
+    mkdir libarchive_dist
+    cp .libs/libarchive.13.dylib libarchive_dist/libarchive.dylib
+    strip libarchive_dist/*
+    mv libarchive_dist ../dist
     echo "Build complete: build contains extra sources for redist and binaries"
 
 elif [[ "$os_name" =~ "MINGW32" ]]; then
