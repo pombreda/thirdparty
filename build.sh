@@ -35,9 +35,9 @@ if [[ "$os_name" =~ "Linux" ]]; then
 
 elif [[ "$os_name" =~ "Darwin" ]]; then
     # assuming that brew is installed
-    brew install git
-    brew tap homebrew/homebrew-dupes
-    brew install zlib xz bzip2 wget libiconv
+    #brew install git
+    #brew tap homebrew/homebrew-dupes
+    #brew install zlib xz bzip2 wget libiconv
     build_lib
     mkdir libarchive_dist
     cp .libs/libarchive.13.dylib libarchive_dist/libarchive.dylib
