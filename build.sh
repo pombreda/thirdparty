@@ -2,7 +2,7 @@
 #
 # Copyright (c) 2015 nexB Inc. http://www.nexb.com/ - All rights reserved.
 
-lib_name=libarchive-3.1.2
+lib_name=libarchive-3.2.1
 lib_archive=$lib_name.tar.gz
 download_url=http://libarchive.org/downloads/$lib_archive
 
