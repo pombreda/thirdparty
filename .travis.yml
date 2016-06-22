@@ -66,10 +66,10 @@ script:
   - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
   - source bin/activate
 
-    # Instal build tools
-  - pip --upgrade install pip wheel setuptools
+    # Install build tools
+  - pip install --upgrade -r base.txt
   - pip install --download=dist/ -r base.txt
-  - pip install --upgrade --no-index --no-allow-external --use-wheel --find-links=dist/  -r base.txt
+  # - pip install --upgrade --no-index --no-allow-external --use-wheel --find-links=dist/  -r base.txt
   
     # download if needed or reuse 
   - pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt -r requirements.txt
