@@ -1,2 +1,0 @@
-# note: does not work as a wheel.. yet
-publicsuffix

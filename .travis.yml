@@ -2,13 +2,12 @@ language: cpp
 
 os: 
   - osx
-#  - linux 
+ - linux 
 
 
 branches:
   only:
     - master
-    - sc
 
 env:
   global:
@@ -50,34 +49,35 @@ install:
     #- sudo apt-get upgrade -qq -y
     #- sudo apt-get install -y build-essential python-dev libxml2-dev libxslt1-dev
 
-  #- echo Installing Python
-  #- mkdir -p $PYTHON_PATH
-  #- cd $PYTHON_PATH && curl --location $PYTHON_DOWNLOAD | tar -zx
-  #- cd $PYTHON_PATH/$PYTHON_ARCHIVE
-  #- ./configure --prefix $PYTHON_PATH >/dev/null 2>&1
-  #- make >/dev/null 2>&1 
-  #- make install >/dev/null 2>&1
-  #- echo $($PYTHON_PATH/bin/$PYTHON_EXE --version)
-  #- echo Done installing Python
+  - echo Installing Python
+  - mkdir -p $PYTHON_PATH
+  - cd $PYTHON_PATH && curl --location $PYTHON_DOWNLOAD | tar -zx
+  - cd $PYTHON_PATH/$PYTHON_ARCHIVE
+  - ./configure --prefix $PYTHON_PATH >/dev/null 2>&1
+  - make >/dev/null 2>&1 
+  - make install >/dev/null 2>&1
+  - echo $($PYTHON_PATH/bin/$PYTHON_EXE --version)
+  - echo Done installing Python
 
 
 script:
     # Install our pip, setuptools in a virtualenv
   - cd $REPO_DIR
-  #- $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
-  #- source bin/activate
+  - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
+  - source bin/activate
 
     # Instal build tools
-  #- pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt
-  #- pip install --no-index --no-allow-external --use-wheel --find-links=dist/  -r base.txt
+  - pip --upgrade install pip wheel setuptools
+  - pip install --download=dist/ -r base.txt
+  - pip install --upgrade --no-index --no-allow-external --use-wheel --find-links=dist/  -r base.txt
   
     # download if needed or reuse 
-  #- pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt -r requirements.txt -r requirements-no-wheel.txt
+  - pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt -r requirements.txt
 
     # wheel the downloads only for these that support wheels
-  #- pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r base.txt -r requirements.txt
+  - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r base.txt -r requirements.txt
 
-  #- find $REPO_DIR/dist
+  - find $REPO_DIR/dist
     # TODO: regenerate index
 
   - ./build.sh
@@ -86,7 +86,6 @@ script:
   - git pull --all
   - git status
   - git add -A --verbose dist
-  - git add -A --verbose dist/libarchive_dist
   - git status
   - git pull --all
   - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}" --allow-empty
