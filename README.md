@@ -8,3 +8,5 @@ See the corresponding *.ABOUT files for details.
 The travis config is used to fetch archives and build wheels for Linux 
 and MacOSX. 
 
+See .travis.yml for details
+
