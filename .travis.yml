@@ -5,89 +5,10 @@ os:
   - linux 
 
 
-branches:
-  only:
-    - master
-
-env:
-  global:
-      # OAuth token for Travis to commit back to Github
-    - secure: "Y+sm5V6m1iAeGCVNe/5clvwYrks8wAlUp0JhOV3T9ditaLpcQEEPU09PT1tojeFTq1mTx7atnMhQRolh8XSt3h9t2WzgqJ7ZbW7cbVqMSMJSzf0UGKcq8g0oCei2v9aNwiYIllqndbPlatO/vebpsejw2xrM7SQ8K/BgzwQLtBw="
-    - PYTHON_VER=2.7
-    - PYTHON_MINOR=2.7.11
-    - PYTHON_PATH=$HOME/python$PYTHON_VER
-    - PYTHON_ARCHIVE=Python-$PYTHON_MINOR
-    - PYTHON_DOWNLOAD=https://www.python.org/ftp/python/$PYTHON_MINOR/$PYTHON_ARCHIVE.tgz
-    - PYTHON_EXE=python$PYTHON_VER
-    - REPO_BASE=$HOME/repo
-    - REPO_DIR=$REPO_BASE/pombreda/thirdparty
-
-
-before_install:
-  - git config --global user.email "${GIT_EMAIL}"
-  - git config --global user.name "${GIT_NAME}"
-
-    # Get a full clone
-  - mkdir $REPO_BASE
-  - cd $REPO_BASE
-  - git clone https://${GH_TOKEN}@github.com/pombreda/thirdparty.git pombreda/thirdparty
-
-    # Merge latest from master in packages then push
-  - cd $REPO_DIR
-  - git pull --all
-  - git checkout -b packages origin/packages
-  - git pull --all
-  - git merge -m "Merging master SHA:${TRAVIS_COMMIT} in packages branch" ${TRAVIS_COMMIT}
-  - git pull --all
-  - git push https://${GH_TOKEN}@github.com/pombreda/thirdparty.git packages
-
-
-install:
-    # Setup extra packages as needed
-    # use $TRAVIS_OS_NAME is linux or osx
-    #- sudo apt-get update -qq
-    #- sudo apt-get upgrade -qq -y
-    #- sudo apt-get install -y build-essential python-dev libxml2-dev libxslt1-dev
-
-  - echo Installing Python
-  - mkdir -p $PYTHON_PATH
-  - cd $PYTHON_PATH && curl --location $PYTHON_DOWNLOAD | tar -zx
-  - cd $PYTHON_PATH/$PYTHON_ARCHIVE
-  - ./configure --prefix $PYTHON_PATH >/dev/null 2>&1
-  - make >/dev/null 2>&1 
-  - make install >/dev/null 2>&1
-  - echo $($PYTHON_PATH/bin/$PYTHON_EXE --version)
-  - echo Done installing Python
-
-
 script:
-    # Install our pip, setuptools in a virtualenv
-  - cd $REPO_DIR
-  - $PYTHON_PATH/bin/$PYTHON_EXE dist/virtualenv.py --never-download --extra-search-dir=dist/ .
-  - source bin/activate
-
-    # Install build tools
-  - pip install --upgrade -r base.txt
-  - pip install --download=dist/ -r base.txt
-  # - pip install --upgrade --no-index --no-allow-external --use-wheel --find-links=dist/  -r base.txt
-  
-    # download if needed or reuse 
-  - pip install --use-wheel --find-links=dist/ --download=dist/ -r base.txt -r requirements.txt
-
-    # wheel the downloads only for these that support wheels
-  - pip wheel --no-index --no-allow-external --wheel-dir dist/ --find-links=dist/ -r base.txt -r requirements.txt
-
-  - find $REPO_DIR/dist
-    # TODO: regenerate index
-
-  #- ./build.sh
-
-    # commit then push new downloads and built wheels
-  - git pull --all
-  - git status
-  - git add -A --verbose dist
-  - git status
-  - git pull --all
-  - git commit -m "New packages built by Travis for commit SHA:${TRAVIS_COMMIT}" --allow-empty
-  - git pull --all
-  - git push https://${GH_TOKEN}@github.com/pombreda/thirdparty.git packages
+    - python -V
+    - gcc -v
+    - git clone https://github.com/WojciechMula/pyahocorasick.git
+    - cd pyahocorascik
+    - pip wheel .
+    - ls -al
