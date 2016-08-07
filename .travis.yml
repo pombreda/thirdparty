@@ -1,11 +1,13 @@
 language: cpp
 
+sudo: required
+
 os: 
   - osx
   - linux 
 
 install:
-    - pip install --upgrade pip wheel
+    - sudo pip install --upgrade pip wheel
 
 script:
     - python -V
