@@ -23,7 +23,7 @@ script:
   - ls -al
   - mkdir wheels
   - pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels
-  - STATIC_DEPS=true pip wheel lxml --wheel-dir=wheels
+  - STATIC_DEPS=true pip wheel lxml==3.6.0 --wheel-dir=wheels
   - ls -al
   - ls -al wheels
 
