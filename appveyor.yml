@@ -22,6 +22,7 @@ artifacts:
 deploy:
   - provider: BinTray
     username: pombreda
+    version: "1
     api_key:
       secure: vfOXPuSdGaUBQWCWhtXGWOKFoWulmg8dl3J8EP7RodmMN96VH8yeMQIHdU3f4+l/
     subject: pombreda
