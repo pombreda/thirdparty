@@ -3,4 +3,7 @@ install:
 build: off
 test_script:
     - dir
-    - cmd: "C:\\Python27\\python.exe -m pip wheel pyahocorasick"
+    - mkdir wheels
+    - cmd: "C:\\Python27\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
+    - dir
+    - dir wheels

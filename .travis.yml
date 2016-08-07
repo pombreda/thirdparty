@@ -10,8 +10,9 @@ install:
 script:
     - python -V
     - gcc -v
-    - git clone https://github.com/WojciechMula/pyahocorasick.git
     - ls -al
+    - mdkdir wheels
     - cd pyahocorasick
-    - pip wheel .
+    - pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels
     - ls -al
+    - ls -al wheels
