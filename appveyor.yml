@@ -1,5 +1,5 @@
 install:
-    - cmd: "C:\\Python27\\python.exe -m install --upgrade pip wheel"
+    - cmd: "C:\\Python27\\python.exe -m pip install --upgrade pip wheel"
 build: off
 test_script:
     - dir
