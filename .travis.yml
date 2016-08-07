@@ -9,6 +9,7 @@ script:
     - python -V
     - gcc -v
     - git clone https://github.com/WojciechMula/pyahocorasick.git
-    - cd pyahocorascik
+    - ls -al
+    - cd pyahocorasick
     - pip wheel .
     - ls -al
