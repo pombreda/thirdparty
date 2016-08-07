@@ -1,17 +1,15 @@
-environment:
-  matrix:
-    - PYTHON: "C:\\Python27"
-    - PYTHON: "C:\\Python27-x64"
 
 install:
-    - cmd: "%PYTHON%\\\python.exe -m pip install --upgrade pip wheel"
+    - cmd: "C:\\Python27\\\python.exe -m pip install --upgrade pip wheel"
+    - cmd: "C:\\Python27-x64\\\python.exe -m pip install --upgrade pip wheel"
 
 build: off
 
 test_script:
     - dir
     - mkdir wheels
-    - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
+    - cmd: "C:\\Python27\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
+    - cmd: "C:\\Python27-x64\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
     - dir
     - dir wheels
 
