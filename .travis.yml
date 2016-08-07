@@ -2,18 +2,25 @@ language: cpp
 
 sudo: required
 
-os: 
-  - osx
-  - linux 
+os:
+- osx
+- linux
 
 install:
-    - sudo pip install --upgrade pip wheel
+- sudo pip install --upgrade pip wheel
 
 script:
-    - python -V
-    - gcc -v
-    - ls -al
-    - mkdir wheels
-    - pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels
-    - ls -al
-    - ls -al wheels
+- python -V
+- gcc -v
+- ls -al
+- mkdir wheels
+- pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels
+- ls -al
+- ls -al wheels
+
+deploy:
+  provider: bintray
+  file: bintray_travis.json
+  user: pombreda
+  key:
+    secure: l8uNfriu2L+rHRRBsR8R6pGHFt+r1Rymfk+1pOKdJTR8NjgBAYEAxPU6IPr+drH1WheXGVFoWttWTcplvo8Xmc+skUMXKUnjNCgrRE0rYKqjdHmEBMKUAjAfZ3hq48ayjRm3FvAjPwcWbTD0siBjK1qm4SD7TBEEC28XuJhT1oE=

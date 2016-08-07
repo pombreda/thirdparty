@@ -1,0 +1,15 @@
+{
+    "package": {
+        "name": "thirdparty",
+        "repo": "thirdparty",
+        "subject": "pombreda",
+    },
+
+    "files":
+        [
+        {"includePattern": "wheels/.*",
+         "matrixParams": {"override": 1}
+        }
+     ],
+    "publish": true
+}
