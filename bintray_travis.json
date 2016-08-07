@@ -4,7 +4,9 @@
         "repo": "thirdparty",
         "subject": "pombreda"
     },
-
+    "version": {
+        "name": ""
+    },
     "files": [
         {
             "includePattern": "wheels/.*",
