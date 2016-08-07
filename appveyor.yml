@@ -1,0 +1,5 @@
+install:
+    cmd: "C:\\Python27\\python.exe -m pip wheel pyahocorasick"
+build: off
+test_script:
+    - dir
