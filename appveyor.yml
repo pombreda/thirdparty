@@ -29,4 +29,3 @@ deploy:
     package: thirdparty
     publish: true
     override: true
-    artifact: wheels\*
