@@ -2,8 +2,8 @@ version: 1.0.{build}
 
 environment:
   matrix:
-  - PYTHON: "C:\\Python27"
-  - PYTHON: "C:\\Python27-x64"
+    - PYTHON: "C:\\Python27"
+    - PYTHON: "C:\\Python27-x64"
 
 install:
   - cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip wheel"
@@ -12,7 +12,10 @@ build: off
 
 test_script:
   - mkdir wheels
-  - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel intbitset --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel bitarray --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel lxml==3.6.0 --wheel-dir=wheels"
   - dir
   - dir wheels
 
