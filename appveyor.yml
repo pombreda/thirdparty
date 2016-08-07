@@ -1,4 +1,3 @@
-
 environment:
     matrix:
         - PYTHON: "C:\\Python27"
@@ -18,3 +17,14 @@ test_script:
 artifacts:
     - path: wheels\*
 
+deploy:
+    - provider: BinTray
+      username: pombreda
+      api_key:
+            secure: vfOXPuSdGaUBQWCWhtXGWOKFoWulmg8dl3J8EP7RodmMN96VH8yeMQIHdU3f4+l/
+      subject: pombreda
+      repo: thirdparty
+      package: thirdparty
+      publish: true
+      override: true
+      artifact: wheels\*
