@@ -13,8 +13,7 @@ script:
     - python -V
     - gcc -v
     - ls -al
-    - mdkdir wheels
-    - cd pyahocorasick
+    - mkdir wheels
     - pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels
     - ls -al
     - ls -al wheels
