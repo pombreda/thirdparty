@@ -1,9 +1,30 @@
+version: 1.0.{build}
+
+environment:
+  matrix:
+    - PYTHON: "C:\\Python27"
+    - PYTHON: "C:\\Python27-x64"
+
 install:
-    - cmd: "C:\\Python27\\python.exe -m pip install --upgrade pip wheel"
+    - cmd: "%PYTHON%\\\python.exe -m pip install --upgrade pip wheel"
+
 build: off
+
 test_script:
     - dir
     - mkdir wheels
-    - cmd: "C:\\Python27\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
+    - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
     - dir
     - dir wheels
+
+deploy:
+    - provider: BinTray
+      username: pombreda
+      api_key:
+        secure: vfOXPuSdGaUBQWCWhtXGWOKFoWulmg8dl3J8EP7RodmMN96VH8yeMQIHdU3f4+l/
+      subject: pombreda
+      repo: thirdparty
+      package: thirdparty
+      publish: true
+      override: true
+      artifact: "/wheels\\.*/"
