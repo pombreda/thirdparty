@@ -4,15 +4,15 @@ environment:
         - PYTHON: "C:\\Python27-x64"
 
 install:
-    - cmd: "%PYTHON%\python.exe -m pip install --upgrade pip wheel"
+    - cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip wheel"
 
-build_script:
+build: off
+
+test_script:
     - mkdir wheels
     - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels"
     - dir
     - dir wheels
-
-test: off
 
 artifacts:
     - path: wheels\*
