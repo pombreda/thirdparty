@@ -2,13 +2,13 @@
     "package": {
         "name": "thirdparty",
         "repo": "thirdparty",
-        "subject": "pombreda",
+        "subject": "pombreda"
     },
 
-    "files":
-        [
-        {"includePattern": "wheels/.*",
-         "matrixParams": {"override": 1}
+    "files": [
+        {
+            "includePattern": "wheels/.*",
+            "matrixParams": {"override": 1}
         }
      ],
     "publish": true
