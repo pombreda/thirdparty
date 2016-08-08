@@ -22,7 +22,9 @@ script:
   - gcc -v
   - ls -al
   - mkdir wheels
-  - pip wheel pyahocorasick intbitset bitarray --wheel-dir=wheels
+  - pip wheel pyahocorasick --wheel-dir=wheels
+  - pip wheel intbitset --wheel-dir=wheels
+  - pip wheel bitarray --wheel-dir=wheels
   - pip wheel lxml==3.6.0 --wheel-dir=wheels
   - ls -al
   - ls -al wheels
