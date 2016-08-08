@@ -12,6 +12,7 @@ The travis config is used to build native code and Python wheels for Linux and M
 
 The appveyor config is used to build native code and Python wheels for Windows.
 
+The final results of the builds is then uploaded to bintray: https://dl.bintray.com/pombreda/thirdparty/
 
 Build status
 ============
