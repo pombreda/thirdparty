@@ -1,3 +1,0 @@
-bitarray
-intbitset
-https://github.com/WojciechMula/pyahocorasick/archive/master.zip

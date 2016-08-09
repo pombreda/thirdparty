@@ -26,6 +26,7 @@ script:
   - pip wheel intbitset --wheel-dir=wheels
   - pip wheel bitarray --wheel-dir=wheels
   - pip wheel lxml==3.6.0 --wheel-dir=wheels
+  - pip wheel tinyarray --wheel-dir=wheels
   - ls -al
   - ls -al wheels
 
