@@ -10,7 +10,7 @@ addons:
   apt:
     packages:
       - build-essential
-      - python-dev-
+      - python-dev
       - libxml2-dev
       - libxslt1-dev
 
@@ -25,7 +25,7 @@ script:
   - pip wheel pyahocorasick --wheel-dir=wheels
   - pip wheel intbitset --wheel-dir=wheels
   - pip wheel bitarray --wheel-dir=wheels
-  - pip wheel lxml==3.6.0 --wheel-dir=wheels
+  - pip wheel lxml==3.3.6 --wheel-dir=wheels
   - pip wheel tinyarray --wheel-dir=wheels
   - ls -al
   - ls -al wheels
