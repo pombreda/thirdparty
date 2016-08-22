@@ -15,7 +15,7 @@ test_script:
   - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick --wheel-dir=wheels"
   - cmd: "%PYTHON%\\python.exe -m pip wheel intbitset --wheel-dir=wheels"
   - cmd: "%PYTHON%\\python.exe -m pip wheel bitarray --wheel-dir=wheels"
-  - cmd: "%PYTHON%\\python.exe -m pip wheel lxml==3.6.0 --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel lxml==3.6.4 --wheel-dir=wheels"
   - cmd: "%PYTHON%\\python.exe -m pip wheel tinyarray --wheel-dir=wheels"
   - dir
   - dir wheels
