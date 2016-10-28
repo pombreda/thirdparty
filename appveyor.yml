@@ -4,6 +4,13 @@ environment:
   matrix:
     - PYTHON: "C:\\Python27"
     - PYTHON: "C:\\Python27-x64"
+    - PACKAGE: pyahocorasick
+    - PACKAGE: https://github.com/WojciechMula/pyahocorasick/archive/19282329183f465130cb9cb3538c9ac44c9cf796.zip
+    - PACKAGE: intbitset
+    - PACKAGE: bitarray
+    - PACKAGE: lxml==3.6.4
+    - PACKAGE: tinyarray
+    - PACKAGE: re2
 
 install:
   - cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip wheel"
@@ -12,12 +19,7 @@ build: off
 
 test_script:
   - mkdir wheels
-  - cmd: "%PYTHON%\\python.exe -m pip wheel pyahocorasick --wheel-dir=wheels"
-  - cmd: "%PYTHON%\\python.exe -m pip wheel intbitset --wheel-dir=wheels"
-  - cmd: "%PYTHON%\\python.exe -m pip wheel bitarray --wheel-dir=wheels"
-  - cmd: "%PYTHON%\\python.exe -m pip wheel lxml==3.6.4 --wheel-dir=wheels"
-  - cmd: "%PYTHON%\\python.exe -m pip wheel tinyarray --wheel-dir=wheels"
-  - cmd: "%PYTHON%\\python.exe -m pip wheel https://github.com/WojciechMula/pyahocorasick/archive/19282329183f465130cb9cb3538c9ac44c9cf796.zip --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels %PACKAGE%"
   - dir
   - dir wheels
 
