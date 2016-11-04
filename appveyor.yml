@@ -22,7 +22,7 @@ test_script:
   - dir wheels
 
 artifacts:
-  - path: wheels\*
+  - path: "wheels\*"
 
 deploy:
   - provider: BinTray
