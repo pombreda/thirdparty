@@ -18,6 +18,7 @@ test_script:
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels tinyarray"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels pyahocorasick"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels simplejson"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels billiard"
   - dir
   - dir wheels
 

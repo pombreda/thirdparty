@@ -29,6 +29,7 @@ script:
   - pip wheel lxml==3.6.0 --wheel-dir=wheels
   - pip wheel tinyarray --wheel-dir=wheels
   - pip wheel simplejson --wheel-dir=wheels
+  - pip wheel billiard --wheel-dir=wheels
   
   - pip wheel https://github.com/WojciechMula/pyahocorasick/archive/19282329183f465130cb9cb3538c9ac44c9cf796.zip --wheel-dir=wheels
   - ls -al
@@ -39,6 +40,7 @@ script:
   - "pip download -d wheels --no-binary :all: lxml==3.6.0"
   - "pip download -d wheels --no-binary :all: tinyarray"
   - "pip download -d wheels --no-binary :all: simplejson"
+  - "pip download -d wheels --no-binary :all: billiard"
   - ls -al wheels
 
 deploy:
