@@ -36,6 +36,7 @@ script:
   - pip wheel menuinst --wheel-dir=wheels
   - pip wheel ruamel.yaml --wheel-dir=wheels
   - pip wheel requests --wheel-dir=wheels
+  - pip wheel pycryptodome --wheel-dir=wheels
   
   - pip wheel https://github.com/WojciechMula/pyahocorasick/archive/19282329183f465130cb9cb3538c9ac44c9cf796.zip --wheel-dir=wheels
   - ls -al
@@ -51,6 +52,7 @@ script:
   - "pip download -d wheels --no-binary :all: pyocosat"
   - "pip download -d wheels --no-binary :all: conda"
   - "pip download -d wheels --no-binary :all: ruamel.yaml"
+  - "pip download -d wheels --no-binary :all: pycryptodome"
   - ls -al wheels
 
 deploy:

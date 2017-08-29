@@ -27,6 +27,7 @@ test_script:
   - cmd: "%PYTHON%\\python.exe -m pip wheel menuinst --wheel-dir=wheels"
   - cmd: "%PYTHON%\\python.exe -m pip wheel ruamel.yaml --wheel-dir=wheels"
   - cmd: "%PYTHON%\\python.exe -m pip wheel requests --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel pycryptodome --wheel-dir=wheels"
 
   - dir
   - dir wheels
