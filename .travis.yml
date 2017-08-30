@@ -32,9 +32,7 @@ script:
   - pip wheel billiard --wheel-dir=wheels
   - pip wheel psutil --wheel-dir=wheels
   - pip wheel pycosat --wheel-dir=wheels
-  - pip wheel conda --wheel-dir=wheels
   - pip wheel menuinst --wheel-dir=wheels
-  - pip wheel ruamel.yaml --wheel-dir=wheels
   - pip wheel requests --wheel-dir=wheels
   - pip wheel pycryptodome --wheel-dir=wheels
   
