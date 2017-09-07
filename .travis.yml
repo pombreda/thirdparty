@@ -22,6 +22,7 @@ script:
   - gcc -v
   - ls -al
   - mkdir wheels
+  - pip install wheel
   - pip wheel pyahocorasick --wheel-dir=wheels
   - pip wheel intbitset --wheel-dir=wheels
   - pip wheel bitarray --wheel-dir=wheels
@@ -31,9 +32,6 @@ script:
   - pip wheel simplejson --wheel-dir=wheels
   - pip wheel billiard --wheel-dir=wheels
   - pip wheel psutil --wheel-dir=wheels
-  - pip wheel pycosat --wheel-dir=wheels
-  - pip wheel menuinst --wheel-dir=wheels
-  - pip wheel requests --wheel-dir=wheels
   - pip wheel pycryptodome --wheel-dir=wheels
   
   - pip wheel https://github.com/WojciechMula/pyahocorasick/archive/19282329183f465130cb9cb3538c9ac44c9cf796.zip --wheel-dir=wheels
