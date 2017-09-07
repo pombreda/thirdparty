@@ -42,4 +42,3 @@ deploy:
     repo: thirdparty
     package: thirdparty
     publish: true
-    override: true
