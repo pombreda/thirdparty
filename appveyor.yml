@@ -35,6 +35,7 @@ deploy:
   - provider: BinTray
     username: pombreda
     version: "2"
+    override: true
     api_key:
       secure: vfOXPuSdGaUBQWCWhtXGWOKFoWulmg8dl3J8EP7RodmMN96VH8yeMQIHdU3f4+l/
     subject: pombreda
