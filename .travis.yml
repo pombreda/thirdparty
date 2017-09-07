@@ -47,9 +47,6 @@ script:
   - "pip download -d wheels --no-binary :all: simplejson"
   - "pip download -d wheels --no-binary :all: billiard"
   - "pip download -d wheels --no-binary :all: psutil"
-  - "pip download -d wheels --no-binary :all: pyocosat"
-  - "pip download -d wheels --no-binary :all: conda"
-  - "pip download -d wheels --no-binary :all: ruamel.yaml"
   - "pip download -d wheels --no-binary :all: pycryptodome"
   - ls -al wheels
 
