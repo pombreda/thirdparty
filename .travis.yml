@@ -26,8 +26,6 @@ script:
   - pip wheel pyahocorasick --wheel-dir=wheels
   - pip wheel intbitset --wheel-dir=wheels
   - pip wheel bitarray --wheel-dir=wheels
-  - pip wheel lxml==3.6.4 --wheel-dir=wheels
-  - pip wheel lxml==3.6.0 --wheel-dir=wheels
   - pip wheel lxml==4.1.1 --wheel-dir=wheels
   - pip wheel tinyarray --wheel-dir=wheels
   - pip wheel simplejson --wheel-dir=wheels
