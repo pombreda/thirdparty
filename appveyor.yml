@@ -4,8 +4,8 @@ environment:
   matrix:
     - PYTHON: "C:\\Python27"
     - PYTHON: "C:\\Python27-x64"
-    - PYTHON: "C:\\Python35"
-    - PYTHON: "C:\\Python35-x64"
+    - PYTHON: "C:\\Python36"
+    - PYTHON: "C:\\Python36-x64"
 
 install:
   - cmd: "%PYTHON%\\python.exe -m pip install --upgrade pip wheel"
@@ -17,6 +17,7 @@ test_script:
   - cmd: "%PYTHON%\\python.exe -m pip install wheel"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels pyahocorasick"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels lxml==3.6.0"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels lxml==4.1.1"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels tinyarray"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels simplejson"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels billiard"
