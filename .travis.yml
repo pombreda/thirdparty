@@ -1,23 +1,34 @@
-#language: cpp
 language: python
 
-#sudo: required
+python:
+  - 2.7.13
 
-#os:
-#  - osx
-#  - linux
+sudo: required
+
+
+# Travis does not offer OSX with arbitrary python versions (like 2.7.13 above)
+# So, you can not simply have the following section in your build matrix:
+# os:
+#   - linux
+#   - osx
+# Instead, you have to include OSX entries into the build matrix manually.
+# In particular, this means specifying the environment variables again.
+
+# The following was adapted from here:
+#   https://docs.travis-ci.com/user/multi-os/
+# Set TEST_SUITE in `env:` so that the `script:` section below works
+# Set `language: generic` to clear `language: python` from above
+# Set `python:` (to empty) to clear it from the travis-ci web interface
+# Set `osx_image: xcode7.3` to pin OSX and Python versions, see here:
+#   https://docs.travis-ci.com/user/osx-ci-environment/
 
 matrix:
   include:
-    - os: linux
-      dist: trusty
-      sudo: required
     - os: osx
-      osx_image: xcode7.2
+      language: generic
+      python:
+      osx_image: xcode7.3
 
-# see https://docs.travis-ci.com/user/reference/osx
-# osx_image: xcode6.4
-# osx_image: xcode8
 
 addons:
   apt:
@@ -28,6 +39,7 @@ addons:
       - libxslt1-dev
 
 install:
+  - python -V
   - sudo pip install --upgrade pip wheel
 
 script:
