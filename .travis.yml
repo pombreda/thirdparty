@@ -1,6 +1,6 @@
-language: cpp
+#language: cpp
 
-sudo: required
+#sudo: required
 
 #os:
 #  - osx
