@@ -55,7 +55,7 @@ script:
   - pip wheel pyahocorasick --wheel-dir=wheels
   - pip wheel intbitset --wheel-dir=wheels
   - pip wheel bitarray --wheel-dir=wheels
-  - pip wheel lxml==4.1.1 --wheel-dir=wheels
+  - pip wheel lxml --wheel-dir=wheels
   - pip wheel tinyarray --wheel-dir=wheels
   - pip wheel simplejson --wheel-dir=wheels
   - pip wheel billiard --wheel-dir=wheels
@@ -66,9 +66,7 @@ script:
   - "pip download -d wheels --no-binary :all: pyahocorasick"
   - "pip download -d wheels --no-binary :all: intbitset"
   - "pip download -d wheels --no-binary :all: bitarray"
-  - "pip download -d wheels --no-binary :all: lxml==3.6.4"
-  - "pip download -d wheels --no-binary :all: lxml==3.6.0"
-  - "pip download -d wheels --no-binary :all: lxml==4.1.1"
+  - "pip download -d wheels --no-binary :all: lxml
   - "pip download -d wheels --no-binary :all: tinyarray"
   - "pip download -d wheels --no-binary :all: simplejson"
   - "pip download -d wheels --no-binary :all: billiard"
