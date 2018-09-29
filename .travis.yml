@@ -61,6 +61,9 @@ script:
   - pip wheel billiard --wheel-dir=wheels
   - pip wheel psutil --wheel-dir=wheels
   - pip wheel pycryptodome --wheel-dir=wheels
+  - pip wheel rdflib --wheel-dir=wheels
+  - pip wheel url --wheel-dir=wheels
+  
   
   - ls -al
   - "pip download -d wheels --no-binary :all: pyahocorasick"
@@ -72,6 +75,9 @@ script:
   - "pip download -d wheels --no-binary :all: billiard"
   - "pip download -d wheels --no-binary :all: psutil"
   - "pip download -d wheels --no-binary :all: pycryptodome"
+  - "pip download -d wheels --no-binary :all: rdflib"
+  - "pip download -d wheels --no-binary :all: url"
+
   - ls -al wheels
 
 deploy:
