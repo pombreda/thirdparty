@@ -62,7 +62,7 @@ script:
   - pip wheel psutil --wheel-dir=wheels
   - pip wheel pycryptodome --wheel-dir=wheels
   - pip wheel rdflib --wheel-dir=wheels
-  - pip wheel url --wheel-dir=wheels
+  - pip wheel url==0.1.6 --wheel-dir=wheels
   
   
   - ls -al
@@ -76,7 +76,7 @@ script:
   - "pip download -d wheels --no-binary :all: psutil"
   - "pip download -d wheels --no-binary :all: pycryptodome"
   - "pip download -d wheels --no-binary :all: rdflib"
-  - "pip download -d wheels --no-binary :all: url"
+  - "pip download -d wheels --no-binary :all: url==0.1.6"
 
   - ls -al wheels
 
