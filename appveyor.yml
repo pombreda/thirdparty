@@ -26,6 +26,7 @@ test_script:
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels pycryptodome"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels rdflib"
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels url==0.1.6"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=scandir"
   
   - dir
   - dir wheels
