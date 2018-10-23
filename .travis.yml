@@ -26,13 +26,8 @@ matrix:
   include:
     - os: osx
       language: generic
-      python:
+      python: 
       osx_image: xcode7.3
-
-#    - os: linux
-#      language: python
-#      python: 2.7.13
-
 
 addons:
   apt:
@@ -43,43 +38,39 @@ addons:
       - libxslt1-dev
 
 install:
-  - python -V
-  - sudo pip install --upgrade pip wheel
+    - python -V
+    - sudo pip install --upgrade pip wheel
 
 script:
-  - python -V
-  - gcc -v
-  - ls -al
-  - mkdir wheels
-  - pip install wheel
-  - pip wheel pyahocorasick --wheel-dir=wheels
-  - pip wheel intbitset --wheel-dir=wheels
-  - pip wheel bitarray --wheel-dir=wheels
-  - pip wheel lxml --wheel-dir=wheels
-  - pip wheel tinyarray --wheel-dir=wheels
-  - pip wheel simplejson --wheel-dir=wheels
-  - pip wheel billiard --wheel-dir=wheels
-  - pip wheel psutil --wheel-dir=wheels
-  - pip wheel pycryptodome --wheel-dir=wheels
-  - pip wheel rdflib --wheel-dir=wheels
-#  - pip wheel url --wheel-dir=wheels
-  - pip wheel scandir --wheel-dir=wheels
-
-  - ls -al
-  - "pip download -d wheels --no-binary :all: pyahocorasick"
-  - "pip download -d wheels --no-binary :all: intbitset"
-  - "pip download -d wheels --no-binary :all: bitarray"
-  - "pip download -d wheels --no-binary :all: lxml
-  - "pip download -d wheels --no-binary :all: tinyarray"
-  - "pip download -d wheels --no-binary :all: simplejson"
-  - "pip download -d wheels --no-binary :all: billiard"
-  - "pip download -d wheels --no-binary :all: psutil"
-  - "pip download -d wheels --no-binary :all: pycryptodome"
-  - "pip download -d wheels --no-binary :all: rdflib"
-#  - "pip download -d wheels --no-binary :all: url==0.1.6"
-  - "pip download -d wheels --no-binary :all: scandir"
-
-  - ls -al wheels
+    - python -V
+    - gcc -v
+    - ls -al
+    - mkdir wheels
+    - pip install wheel
+    - pip wheel pyahocorasick --wheel-dir=wheels
+    - pip wheel intbitset --wheel-dir=wheels
+    - pip wheel bitarray --wheel-dir=wheels
+    - pip wheel lxml --wheel-dir wheels
+    - pip wheel tinyarray --wheel-dir wheels
+    - pip wheel simplejson --wheel-dir=wheels
+    - pip wheel billiard --wheel-dir=wheels
+    - pip wheel psutil --wheel-dir=wheels
+    - pip wheel pycryptodome --wheel-dir=wheels
+    - pip wheel rdflib --wheel-dir=wheels
+    - pip wheel scandir --wheel-dir=wheels
+    - ls -al
+    - pip download -d wheels --no-binary :all: pyahocorasick
+    - pip download -d wheels --no-binary :all: intbitset
+    - pip download -d wheels --no-binary :all: bitarray
+    - pip download -d wheels --no-binary :all: lxml
+    - pip download -d wheels --no-binary :all: tinyarray
+    - pip download -d wheels --no-binary :all: simplejson
+    - pip download -d wheels --no-binary :all: billiard
+    - pip download -d wheels --no-binary :all: psutil
+    - pip download -d wheels --no-binary :all: pycryptodome
+    - pip download -d wheels --no-binary :all: rdflib
+    - pip download -d wheels --no-binary :all: scandir
+    - ls -al wheels
 
 deploy:
   provider: bintray
