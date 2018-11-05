@@ -34,5 +34,3 @@ Build status
 .. image:: https://ci.appveyor.com/api/projects/status/github/pombreda/thirdparty?branch=master&svg=true
    :target: https://ci.appveyor.com/project/pombreda/thirdparty
    :alt: Windows Master branch build status
-
-
