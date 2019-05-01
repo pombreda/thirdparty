@@ -60,7 +60,7 @@ script:
     - "pip wheel scandir --wheel-dir=wheels"
     - "pip wheel pyyaml==3.12 --wheel-dir=wheels"
     - "pip wheel pyyaml --wheel-dir=wheels"
-    - "ls -al"
+    - "ls -al wheels"
     - "pip download -d wheels --no-binary :all: pyahocorasick"
     - "pip download -d wheels --no-binary :all: intbitset"
     - "pip download -d wheels --no-binary :all: bitarray"
