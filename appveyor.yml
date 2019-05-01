@@ -27,6 +27,8 @@ test_script:
   - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels rdflib"
 #  - cmd: "%PYTHON%\\python.exe -m pip wheel --wheel-dir=wheels url==0.1.6"
   - cmd: "%PYTHON%\\python.exe -m pip wheel scandir --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel pyyaml==3.12 --wheel-dir=wheels"
+  - cmd: "%PYTHON%\\python.exe -m pip wheel pyyaml --wheel-dir=wheels"
   
   - dir
   - dir wheels

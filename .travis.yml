@@ -58,6 +58,8 @@ script:
     - "pip wheel pycryptodome --wheel-dir=wheels"
     - "pip wheel rdflib --wheel-dir=wheels"
     - "pip wheel scandir --wheel-dir=wheels"
+    - "pip wheel pyyaml==3.12 --wheel-dir=wheels"
+    - "pip wheel pyyaml --wheel-dir=wheels"
     - "ls -al"
     - "pip download -d wheels --no-binary :all: pyahocorasick"
     - "pip download -d wheels --no-binary :all: intbitset"
@@ -70,6 +72,8 @@ script:
     - "pip download -d wheels --no-binary :all: pycryptodome"
     - "pip download -d wheels --no-binary :all: rdflib"
     - "pip download -d wheels --no-binary :all: scandir"
+    - "pip download -d wheels --no-binary :all: pyyaml==3.12"
+    - "pip download -d wheels --no-binary :all: pyyaml"
     - "ls -al wheels"
 
 deploy:
