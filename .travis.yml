@@ -60,6 +60,7 @@ script:
     - "pip wheel scandir --wheel-dir=wheels"
     - "pip wheel pyyaml==3.12 --wheel-dir=wheels"
     - "pip wheel pyyaml --wheel-dir=wheels"
+    - "pip wheel pyroaring --wheel-dir=wheels"
     - "ls -al wheels"
     - "pip download -d wheels --no-binary :all: pyahocorasick"
     - "pip download -d wheels --no-binary :all: intbitset"
@@ -74,6 +75,7 @@ script:
     - "pip download -d wheels --no-binary :all: scandir"
     - "pip download -d wheels --no-binary :all: pyyaml==3.12"
     - "pip download -d wheels --no-binary :all: pyyaml"
+    - "pip download -d wheels --no-binary :all: pyroaring"
     - "ls -al wheels"
 
 deploy:
