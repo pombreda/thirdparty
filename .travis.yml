@@ -63,7 +63,7 @@ script:
     - "pip wheel cdifflib --wheel-dir=wheels"
     - "pip wheel pyroaring --wheel-dir=wheels"
     - "pip wheel edlib --wheel-dir=wheels"
-    - "pip wheel hyperscan --wheel-dir=wheels"
+# fails on Mac    - "pip wheel hyperscan --wheel-dir=wheels"
     - "ls -al wheels"
     - "pip download -d wheels --no-binary :all: pyahocorasick"
     - "pip download -d wheels --no-binary :all: intbitset"
