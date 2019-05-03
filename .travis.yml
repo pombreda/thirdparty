@@ -61,7 +61,8 @@ script:
     - "pip wheel pyyaml==3.12 --wheel-dir=wheels"
     - "pip wheel pyyaml --wheel-dir=wheels"
     - "pip wheel pyroaring --wheel-dir=wheels"
-    - "pip wheel hyperscan --wheel-dir=wheels"
+    - "pip wheel edlib --wheel-dir=wheels"
+# fails    - "pip wheel hyperscan --wheel-dir=wheels"
     - "ls -al wheels"
     - "pip download -d wheels --no-binary :all: pyahocorasick"
     - "pip download -d wheels --no-binary :all: intbitset"
@@ -78,6 +79,7 @@ script:
     - "pip download -d wheels --no-binary :all: pyyaml"
     - "pip download -d wheels --no-binary :all: pyroaring"
     - "pip download -d wheels --no-binary :all: hyperscan"
+    - "pip download -d wheels --no-binary :all: edlib"
     - "ls -al wheels"
 
 deploy:
