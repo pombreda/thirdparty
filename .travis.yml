@@ -5,50 +5,42 @@ python: 3.5
 dist: trusty
 services: docker
 
+os:
+    - linux
+    - osx
 
 env:
     global:
         - PLAT=x86_64
         - MB_PYTHON_OSX_VER=10.9
+    matrix:
+        - UNICODE_WIDTH=16
         - UNICODE_WIDTH=32
-        - PROJECT_SPEC: "pyahocorasick intbitset bitarray lxml tinyarray simplejson billiard psutil pycryptodome rdflib scandir pyyaml==3.12 cdifflib pyroaring edlib hyperscan"
-
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: lxml
+        - PROJECT_SPEC: tinyarray
+        - PROJECT_SPEC: simplejson
+        - PROJECT_SPEC: billiard
+        - PROJECT_SPEC: psutil
+        - PROJECT_SPEC: intbitset
+        - PROJECT_SPEC: bitarray
+        - PROJECT_SPEC: pycryptodome
+        - PROJECT_SPEC: rdflib
+        - PROJECT_SPEC: url==0.1.6
+        - PROJECT_SPEC: scandir
+        - PROJECT_SPEC: pyyaml==3.12 
+        - PROJECT_SPEC: pyyaml 
+        - PROJECT_SPEC: cdifflib   
+        - PROJECT_SPEC: edlib 
+        - PROJECT_SPEC: hyperscan  
+        - PROJECT_SPEC: pyroaring     
+        - MB_PYTHON_VERSION=2.7
+        - MB_PYTHON_VERSION=3.6
 
 matrix:
   exclude:
     # Exclude the default Python 3.5 build
     - python: 3.5
-
-  include:
-    - os: linux
-      env: 
-        - MB_PYTHON_VERSION=2.7
-        - UNICODE_WIDTH=16
-
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - PROJECT_SPEC: pyahocorasick
-
-    - os: linux
-      env:
-        - MB_PYTHON_VERSION=3.6
-
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=2.7
-        - UNICODE_WIDTH=16
-
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=2.7
-
-    - os: osx
-      language: generic
-      env:
-        - MB_PYTHON_VERSION=3.6
 
 
 before_install:
@@ -60,7 +52,7 @@ install:
     - ls -al ${TRAVIS_BUILD_DIR}/wheelhouse/
 
 script:
-    - for whl in $PROJECT_SPEC; do build_index_wheel $whl ; done 
+    - build_index_wheel $PROJECT_SPEC 
     - ls -al ${TRAVIS_BUILD_DIR}/wheelhouse/
 
 deploy:
