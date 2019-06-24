@@ -9,7 +9,7 @@
     },
     "files": [
         {
-            "includePattern": "wheels/(.*)",
+            "includePattern": "wheelhouse/(.*)",
             "uploadPattern": "$1",
             "matrixParams": {"override": 1}
         }

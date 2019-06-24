@@ -1,88 +1,79 @@
+env:
+    global:
+        - PLAT=x86_64
+        - MB_PYTHON_OSX_VER=10.9
+        - UNICODE_WIDTH=32
+
+    matrix:
+        - WHEEL_TO_BUILD: pyahocorasick
+#        - WHEEL_TO_BUILD: intbitset
+#        - WHEEL_TO_BUILD: bitarray
+#        - WHEEL_TO_BUILD: lxml
+#        - WHEEL_TO_BUILD: tinyarray
+#        - WHEEL_TO_BUILD: simplejson
+#        - WHEEL_TO_BUILD: billiard
+#        - WHEEL_TO_BUILD: psutil
+#        - WHEEL_TO_BUILD: pycryptodome
+#        - WHEEL_TO_BUILD: rdflib
+#        - WHEEL_TO_BUILD: scandir
+        - WHEEL_TO_BUILD: pyyaml==3.12
+#        - WHEEL_TO_BUILD: pyyaml
+#        - WHEEL_TO_BUILD: cdifflib
+#        - WHEEL_TO_BUILD: pyroaring
+#        - WHEEL_TO_BUILD: edlib
+#        - WHEEL_TO_BUILD: hyperscan
+
+
 language: python
-
-python:
-  - 2.7.13
-
-sudo: required
-
-
-# Travis does not offer OSX with arbitrary python versions (like 2.7.13 above)
-# So, you can not simply have the following section in your build matrix:
-# os:
-#   - linux
-#   - osx
-# Instead, you have to include OSX entries into the build matrix manually.
-# In particular, this means specifying the environment variables again.
-
-# The following was adapted from here:
-#   https://docs.travis-ci.com/user/multi-os/
-# Set TEST_SUITE in `env:` so that the `script:` section below works
-# Set `language: generic` to clear `language: python` from above
-# Set `python:` (to empty) to clear it from the travis-ci web interface
-# Set `osx_image: xcode7.3` to pin OSX and Python versions, see here:
-#   https://docs.travis-ci.com/user/osx-ci-environment/
+# The Travis Python version is unrelated to the version we build and test
+# with.  This is set with the MB_PYTHON_VERSION variable. 
+python: 3.5
+dist: trusty
+services: docker
 
 matrix:
+  exclude:
+    # Exclude the default Python 3.5 build
+    - python: 3.5
+
   include:
+    - os: linux
+      env: 
+        - MB_PYTHON_VERSION=2.7
+        - UNICODE_WIDTH=16
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=2.7
+    - os: linux
+      env:
+        - MB_PYTHON_VERSION=3.6
+
     - os: osx
       language: generic
-      python: 
-      osx_image: xcode7.3
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - MB_PYTHON_OSX_VER=10.9
+        - UNICODE_WIDTH=16
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=2.7
+        - MB_PYTHON_OSX_VER=10.9
+    - os: osx
+      language: generic
+      env:
+        - MB_PYTHON_VERSION=3.6
+        - MB_PYTHON_OSX_VER=10.9
 
-addons:
-  apt:
-    packages:
-      - build-essential
-      - python-dev
-      - libxml2-dev
-      - libxslt1-dev
 
-install:
-    - python -V
-    - sudo pip install --upgrade pip wheel
+before_install:
+    - source multibuild/common_utils.sh
+    - source multibuild/travis_steps.sh
+    - before_install
 
 script:
-    - "python -V"
-    - "gcc -v"
-    - "ls -al"
-    - "mkdir wheels"
-    - "pip install wheel"
-    - "pip wheel pyahocorasick --wheel-dir=wheels"
-    - "pip wheel intbitset --wheel-dir=wheels"
-    - "pip wheel bitarray --wheel-dir=wheels"
-    - "pip wheel lxml --wheel-dir wheels"
-    - "pip wheel tinyarray --wheel-dir wheels"
-    - "pip wheel simplejson --wheel-dir=wheels"
-    - "pip wheel billiard --wheel-dir=wheels"
-    - "pip wheel psutil --wheel-dir=wheels"
-    - "pip wheel pycryptodome --wheel-dir=wheels"
-    - "pip wheel rdflib --wheel-dir=wheels"
-    - "pip wheel scandir --wheel-dir=wheels"
-    - "pip wheel pyyaml==3.12 --wheel-dir=wheels"
-    - "pip wheel pyyaml --wheel-dir=wheels"
-    - "pip wheel cdifflib --wheel-dir=wheels"
-    - "pip wheel pyroaring --wheel-dir=wheels"
-    - "pip wheel edlib --wheel-dir=wheels"
-# fails on Mac    - "pip wheel hyperscan --wheel-dir=wheels"
-    - "ls -al wheels"
-    - "pip download -d wheels --no-binary :all: pyahocorasick"
-    - "pip download -d wheels --no-binary :all: intbitset"
-    - "pip download -d wheels --no-binary :all: bitarray"
-    - "pip download -d wheels --no-binary :all: lxml"
-    - "pip download -d wheels --no-binary :all: tinyarray"
-    - "pip download -d wheels --no-binary :all: simplejson"
-    - "pip download -d wheels --no-binary :all: billiard"
-    - "pip download -d wheels --no-binary :all: psutil"
-    - "pip download -d wheels --no-binary :all: pycryptodome"
-    - "pip download -d wheels --no-binary :all: rdflib"
-    - "pip download -d wheels --no-binary :all: scandir"
-    - "pip download -d wheels --no-binary :all: pyyaml==3.12"
-    - "pip download -d wheels --no-binary :all: pyyaml"
-    - "pip download -d wheels --no-binary :all: pyroaring"
-    - "pip download -d wheels --no-binary :all: cdifflib"
-    - "pip download -d wheels --no-binary :all: edlib"
-    - "ls -al wheels"
-# fails    - "pip download -d wheels --no-binary :all: hyperscan"
+    - build_index_wheel $WHEEL_TO_BUILD
+
 
 deploy:
   provider: bintray
@@ -91,3 +82,4 @@ deploy:
   user: pombreda
   key:
     secure: l8uNfriu2L+rHRRBsR8R6pGHFt+r1Rymfk+1pOKdJTR8NjgBAYEAxPU6IPr+drH1WheXGVFoWttWTcplvo8Xmc+skUMXKUnjNCgrRE0rYKqjdHmEBMKUAjAfZ3hq48ayjRm3FvAjPwcWbTD0siBjK1qm4SD7TBEEC28XuJhT1oE=
+
