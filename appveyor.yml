@@ -8,12 +8,11 @@ environment:
         psutil
         intbitset
         bitarray
-        pycryptodome 
-        rdflib 
-        url==0.1.6 
-        scandir 
-        pyyaml==3.12 
-        pyyaml 
+        pycryptodome
+        rdflib
+        url==0.1.6
+        scandir
+        pyyaml
         cdifflib
         edlib
         hyperscan
@@ -35,7 +34,7 @@ build: false
 
 test_script:
   - set "err=0"
-  - python -m pip wheel --wheel-dir=wheelhouse %WHEELS% || set "err=1"
+  - for %%WHEEL in (%WHEELS%) do (python -m pip wheel --wheel-dir=wheelhouse %%WHEEL || set "err=1")
   - dir /S /B
   - exit /b %err%
 

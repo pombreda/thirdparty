@@ -34,7 +34,7 @@ install:
     - ls -al ${TRAVIS_BUILD_DIR}/wheelhouse/
 
 script:
-    - build_index_wheel "$PROJECT_SPEC" 
+    - for whl in $PROJECT_SPEC; do build_index_wheel "$whl" || continue; done
     - ls -al ${TRAVIS_BUILD_DIR}/wheelhouse/
 
 deploy:
