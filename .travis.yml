@@ -5,23 +5,23 @@ env:
         - UNICODE_WIDTH=32
 
     matrix:
-        - WHEEL_TO_BUILD: pyahocorasick
-#        - WHEEL_TO_BUILD: intbitset
-#        - WHEEL_TO_BUILD: bitarray
-#        - WHEEL_TO_BUILD: lxml
-#        - WHEEL_TO_BUILD: tinyarray
-#        - WHEEL_TO_BUILD: simplejson
-#        - WHEEL_TO_BUILD: billiard
-#        - WHEEL_TO_BUILD: psutil
-#        - WHEEL_TO_BUILD: pycryptodome
-#        - WHEEL_TO_BUILD: rdflib
-#        - WHEEL_TO_BUILD: scandir
-        - WHEEL_TO_BUILD: pyyaml==3.12
-#        - WHEEL_TO_BUILD: pyyaml
-#        - WHEEL_TO_BUILD: cdifflib
-#        - WHEEL_TO_BUILD: pyroaring
-#        - WHEEL_TO_BUILD: edlib
-#        - WHEEL_TO_BUILD: hyperscan
+        - PROJECT_SPEC: pyahocorasick
+#        - PROJECT_SPEC: intbitset
+#        - PROJECT_SPEC: bitarray
+#        - PROJECT_SPEC: lxml
+#        - PROJECT_SPEC: tinyarray
+#        - PROJECT_SPEC: simplejson
+#        - PROJECT_SPEC: billiard
+#        - PROJECT_SPEC: psutil
+#        - PROJECT_SPEC: pycryptodome
+#        - PROJECT_SPEC: rdflib
+#        - PROJECT_SPEC: scandir
+        - PROJECT_SPEC: pyyaml==3.12
+#        - PROJECT_SPEC: pyyaml
+#        - PROJECT_SPEC: cdifflib
+#        - PROJECT_SPEC: pyroaring
+#        - PROJECT_SPEC: edlib
+#        - PROJECT_SPEC: hyperscan
 
 
 language: python
@@ -41,29 +41,42 @@ matrix:
       env: 
         - MB_PYTHON_VERSION=2.7
         - UNICODE_WIDTH=16
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: pyyaml==3.12
+
     - os: linux
       env:
         - MB_PYTHON_VERSION=2.7
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: pyyaml==3.12
+
     - os: linux
       env:
         - MB_PYTHON_VERSION=3.6
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: pyyaml==3.12
 
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=2.7
-        - MB_PYTHON_OSX_VER=10.9
         - UNICODE_WIDTH=16
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: pyyaml==3.12
+
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=2.7
-        - MB_PYTHON_OSX_VER=10.9
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: pyyaml==3.12
+
     - os: osx
       language: generic
       env:
         - MB_PYTHON_VERSION=3.6
-        - MB_PYTHON_OSX_VER=10.9
+        - PROJECT_SPEC: pyahocorasick
+        - PROJECT_SPEC: pyyaml==3.12
 
 
 before_install:
@@ -75,7 +88,7 @@ install:
     - ls -al ${TRAVIS_BUILD_DIR}/wheelhouse/
 
 script:
-    - build_index_wheel $WHEEL_TO_BUILD
+    - build_index_wheel $PROJECT_SPEC
 
 
 deploy:
