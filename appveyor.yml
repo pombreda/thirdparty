@@ -54,7 +54,7 @@ install:
 build: false
 
 test_script:
-  - for %%I in (%WHEELS%) do (
+  - for /F %%I "delims= " in (%WHEELS%) do (
     python -m pip wheel --wheel-dir=wheelhouse %%I || dir)
   - dir /S /B
 
