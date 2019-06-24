@@ -71,6 +71,9 @@ before_install:
     - source multibuild/travis_steps.sh
     - before_install
 
+install:
+    - ls -al ${TRAVIS_BUILD_DIR}/wheelhouse/
+
 script:
     - build_index_wheel $WHEEL_TO_BUILD
 
