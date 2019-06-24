@@ -1,27 +1,157 @@
 environment:
   matrix:
     - PYTHON: "C:\\Python27"
+      WHEEL: pyahocorasick
+    - PYTHON: "C:\\Python27"
+      WHEEL: lxml
+    - PYTHON: "C:\\Python27"
+      WHEEL: tinyarray
+    - PYTHON: "C:\\Python27"
+      WHEEL: simplejson
+    - PYTHON: "C:\\Python27"
+      WHEEL: billiard
+    - PYTHON: "C:\\Python27"
+      WHEEL: psutil
+    - PYTHON: "C:\\Python27"
+      WHEEL: intbitset
+    - PYTHON: "C:\\Python27"
+      WHEEL: bitarray
+    - PYTHON: "C:\\Python27"
+      WHEEL: pycryptodome
+    - PYTHON: "C:\\Python27"
+      WHEEL: rdflib
+    - PYTHON: "C:\\Python27"
+      WHEEL: url==0.1.6
+    - PYTHON: "C:\\Python27"
+      WHEEL: scandir
+    - PYTHON: "C:\\Python27"
+      WHEEL: pyyaml==3.12 
+    - PYTHON: "C:\\Python27"
+      WHEEL: pyyaml 
+    - PYTHON: "C:\\Python27"
+      WHEEL: cdifflib   
+    - PYTHON: "C:\\Python27"
+      WHEEL: edlib 
+    - PYTHON: "C:\\Python27"
+      WHEEL: hyperscan  
+    - PYTHON: "C:\\Python27"
+      WHEEL: pyroaring 
+
     - PYTHON: "C:\\Python27-x64"
+      WHEEL: pyahocorasick
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: lxml
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: tinyarray
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: simplejson
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: billiard
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: psutil
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: intbitset
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: bitarray
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: pycryptodome
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: rdflib
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: url==0.1.6
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: scandir
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: pyyaml==3.12 
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: pyyaml 
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: cdifflib   
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: edlib 
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: hyperscan  
+    - PYTHON: "C:\\Python27-x64"
+      WHEEL: pyroaring 
+
     - PYTHON: "C:\\Python36"
+      WHEEL: pyahocorasick
+    - PYTHON: "C:\\Python36"
+      WHEEL: lxml
+    - PYTHON: "C:\\Python36"
+      WHEEL: tinyarray
+    - PYTHON: "C:\\Python36"
+      WHEEL: simplejson
+    - PYTHON: "C:\\Python36"
+      WHEEL: billiard
+    - PYTHON: "C:\\Python36"
+      WHEEL: psutil
+    - PYTHON: "C:\\Python36"
+      WHEEL: intbitset
+    - PYTHON: "C:\\Python36"
+      WHEEL: bitarray
+    - PYTHON: "C:\\Python36"
+      WHEEL: pycryptodome
+    - PYTHON: "C:\\Python36"
+      WHEEL: rdflib
+    - PYTHON: "C:\\Python36"
+      WHEEL: url==0.1.6
+    - PYTHON: "C:\\Python36"
+      WHEEL: scandir
+    - PYTHON: "C:\\Python36"
+      WHEEL: pyyaml==3.12 
+    - PYTHON: "C:\\Python36"
+      WHEEL: pyyaml 
+    - PYTHON: "C:\\Python36"
+      WHEEL: cdifflib   
+    - PYTHON: "C:\\Python36"
+      WHEEL: edlib 
+    - PYTHON: "C:\\Python36"
+      WHEEL: hyperscan  
+    - PYTHON: "C:\\Python36"
+      WHEEL: pyroaring 
+
     - PYTHON: "C:\\Python36-x64"
-    - WHEEL: pyahocorasick
-    - WHEEL: lxml
-    - WHEEL: tinyarray
-    - WHEEL: simplejson
-    - WHEEL: billiard
-    - WHEEL: psutil
-    - WHEEL: intbitset
-    - WHEEL: bitarray
-    - WHEEL: pycryptodome
-    - WHEEL: rdflib
-    - WHEEL: url==0.1.6
-    - WHEEL: scandir
-    - WHEEL: pyyaml==3.12 
-    - WHEEL: pyyaml 
-    - WHEEL: cdifflib   
-    - WHEEL: edlib 
-    - WHEEL: hyperscan  
-    - WHEEL: pyroaring 
+      WHEEL: pyahocorasick
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: lxml
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: tinyarray
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: simplejson
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: billiard
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: psutil
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: intbitset
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: bitarray
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: pycryptodome
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: rdflib
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: url==0.1.6
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: scandir
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: pyyaml==3.12 
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: pyyaml 
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: cdifflib   
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: edlib 
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: hyperscan  
+    - PYTHON: "C:\\Python36-x64"
+      WHEEL: pyroaring 
+
+#    - PYTHON: "C:\\Python27-x64"
+#    - PYTHON: "C:\\Python36"
+#    - PYTHON: "C:\\Python36-x64"
+
 
 install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
