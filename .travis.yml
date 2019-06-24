@@ -11,8 +11,7 @@ env:
         - PLAT=x86_64
         - MB_PYTHON_OSX_VER=10.9
         - UNICODE_WIDTH=32
-        - PROJECT_SPEC: pyahocorasick intbitset bitarray lxml tinyarray
-           simplejson billiard psutil pycryptodome rdflib scandir pyyaml==3.12 cdifflib pyroaring edlib hyperscan
+        - PROJECT_SPEC: "pyahocorasick intbitset bitarray lxml tinyarray simplejson billiard psutil pycryptodome rdflib scandir pyyaml==3.12 cdifflib pyroaring edlib hyperscan"
 
 
 matrix:
