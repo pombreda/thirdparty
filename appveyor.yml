@@ -21,8 +21,8 @@ environment:
         scandir==1.9.0
         MarkupSafe
         MarkupSafe==1.0
-        codecov
-        codecov==2.0.15
+        coverage 
+        coverage=4.4.1
         pdfminer.six
         pdfminer.six==20181108
         pefile
