@@ -13,7 +13,7 @@ env:
     global:
         - PLAT=x86_64
         - MB_PYTHON_OSX_VER=10.9
-        - PROJECT_SPEC="pyahocorasick pyahocorasick==1.4.0 lxml lxml==4.2.1 simplejson simplejson==3.15.0 intbitset intbitset==2.3.0 bitarray bitarray==0.8.1 pycryptodome pycryptodome==3.6.1 rdflib rdflib==4.2.1 url url==0.1.4.5 url==0.1.6 scandir scandir==1.9.0 MarkupSafe MarkupSafe==1.0 coverage=4.4.1 coverage pdfminer.six pdfminer.six==20181108 pefile pefile==2018.8.8 pyyaml PyYAML==3.12 SPARQLWrapper SPARQLWrapper==1.8.0 psutil psutil==5.6.2 tinyarray cdifflib edlib hyperscan pyroaring"
+        - PROJECT_SPEC="pyahocorasick pyahocorasick==1.4.0 lxml lxml==4.2.1 simplejson simplejson==3.15.0 intbitset intbitset==2.3.0 bitarray bitarray==0.8.1 pycryptodome pycryptodome==3.6.1 rdflib rdflib==4.2.1 url url==0.1.4.5 url==0.1.6 scandir scandir==1.9.0 MarkupSafe MarkupSafe==1.0 coverage==4.4.1 coverage pdfminer.six pdfminer.six==20181108 pefile pefile==2018.8.8 pyyaml PyYAML==3.12 SPARQLWrapper SPARQLWrapper==1.8.0 psutil psutil==5.6.2 tinyarray cdifflib edlib hyperscan pyroaring"
 
     matrix:
         - MB_PYTHON_VERSION=2.7 UNICODE_WIDTH=16 
