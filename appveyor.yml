@@ -1,6 +1,6 @@
 environment:
   global:
-    WHEELS: pyahocorasick
+    WHEELS: |
         pyahocorasick==1.4.0
         lxml
         lxml==4.2.1
@@ -53,6 +53,7 @@ install:
 build: false
 
 test_script:
+  - python -m pip wheel --wheel-dir=wheelhouse url || dir
   - for /F "delims= " %%I in (%WHEELS%) do (
     python -m pip wheel --wheel-dir=wheelhouse %%I || dir)
   - dir /S /B
