@@ -1,7 +1,7 @@
 thirdparty
 ==========
 
-This repo is a builder of thidrparty components.
+This repo is a builder of thirdparty components.
 The repo itself is in the public domain. 
 Each built component is released under its own license.
 
