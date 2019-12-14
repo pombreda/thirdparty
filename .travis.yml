@@ -28,6 +28,7 @@ env:
 #    - python: '3.5'
 
 before_install:
+    - softwareupdate --install "Command Line Tools (macOS High Sierra version 10.13) for Xcode-10.1"
     - source multibuild/common_utils.sh
     - source multibuild/travis_steps.sh
     - before_install
