@@ -14,8 +14,7 @@ environment:
         pycryptodome==3.6.1
         rdflib
         rdflib==4.2.1
-        url
-        url==0.1.6
+        urlpy
         scandir
         scandir==1.9.0
         MarkupSafe
@@ -47,6 +46,8 @@ environment:
     - PYTHON: "C:\\Python37-x64"
     - PYTHON: "C:\\Python38"
     - PYTHON: "C:\\Python38-x64"
+    - PYTHON: "C:\\Python39"
+    - PYTHON: "C:\\Python39-x64"
 
 install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
