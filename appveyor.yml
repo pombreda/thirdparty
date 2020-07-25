@@ -14,8 +14,7 @@ environment:
         pycryptodome==3.6.1
         rdflib
         rdflib==4.2.1
-        url
-        url==0.1.6
+        urlpy
         scandir
         scandir==1.9.0
         MarkupSafe
@@ -39,14 +38,14 @@ environment:
         pyroaring
 
   matrix:
-    - PYTHON: "C:\\Python27"
-    - PYTHON: "C:\\Python27-x64"
     - PYTHON: "C:\\Python36"
     - PYTHON: "C:\\Python36-x64"
     - PYTHON: "C:\\Python37"
     - PYTHON: "C:\\Python37-x64"
     - PYTHON: "C:\\Python38"
     - PYTHON: "C:\\Python38-x64"
+    - PYTHON: "C:\\Python39"
+    - PYTHON: "C:\\Python39-x64"
 
 install:
   - set PATH=%PYTHON%;%PYTHON%\Scripts;%PATH%
@@ -57,7 +56,7 @@ install:
 build: false
 
 test_script:
-  - python -m pip wheel --wheel-dir=wheelhouse url || dir
+  - python -m pip wheel --wheel-dir=wheelhouse urlpy || dir
   - for /F "delims= " %%I in (%WHEELS%) do (
     python -m pip wheel --wheel-dir=wheelhouse %%I || dir)
   - dir /S /B
